@@ -7,9 +7,6 @@
 #def display_maze(maze, loc):
 
 def main():
-    
-    
-
-
+    #Test edit
 
 main()
