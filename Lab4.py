@@ -3,16 +3,19 @@
 #02/09/2026
 #Description: ___
 
-#def read_maze():
+import check_input
+
+def read_maze():
+    file = open("maze.txt", "r")
+    maze = []
+    file.close
+
+
 #def find_start(maze):
 #def display_maze(maze, loc):
 
 def main():
-    #Test edit
     #Test
+    read_maze()
 
-
-    #test
-    #test
-    #test
 main()
