@@ -8,7 +8,14 @@ import check_input
 def read_maze():
     file = open("maze.txt", "r")
     maze = []
+    for line in file:
+        row = []
+        for char in line.strip():
+            row.append(char)
+        maze.append(row)
     file.close
+
+    print(maze)
 
 
 #def find_start(maze):
