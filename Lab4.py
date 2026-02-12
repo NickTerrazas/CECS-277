@@ -10,7 +10,7 @@ def read_maze():
     Parameters: None
     Returns: A 2d list representing the maze.
     """
-    file = open("maze.txt", "r") #Not sure why this isn't opening the file.
+    file = open("CECS-277\maze.txt", "r")
     maze = [] 
     #Fills the maze as a 2d list from the maze.txt file.
     for line in file:
@@ -40,6 +40,7 @@ def display_maze(maze, loc):
 
 
 def main():
-    location = find_start(read_maze)
-
+    maze = read_maze()
+    location = find_start(maze)
+    print(location)
 main()
