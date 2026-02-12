@@ -36,11 +36,23 @@ def find_start(maze):
 
 
 def display_maze(maze, loc):
-    return
+    locX = loc[0]
+    locY = loc[1]
+
+    for i in range (len(maze)):
+        for j in range(len(maze[i])):
+            if(i == locX):
+                if(j == locY):
+                    print('X', end="")
+                    continue
+            print(maze[i][j], end="")
+        print('\n')
 
 
 def main():
     maze = read_maze()
     location = find_start(maze)
-    print(location)
+    display_maze(maze, location)
+
+
 main()
