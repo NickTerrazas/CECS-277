@@ -11,7 +11,7 @@ def read_maze():
     Parameters: None
     Returns: A 2d list representing the maze.
     """
-    file = open("maze.txt", "r")
+    file = open("Lab4\maze.txt", "r")
     maze = [] 
     #Fills the maze as a 2d list from the maze.txt file.
     for line in file:
