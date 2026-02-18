@@ -9,15 +9,21 @@ import check_input
 
 def read_file_to_dictionary(filename: str) -> dict:
     """
-    Each line is: state,capital
-    Read the file and return a dict of {state: capital}.
+    Takes in the name of a file and puts the contents into a dictionary, with states as keys and capitals as values.
+    Parameters: The name of the file to read from.
+    Returns: A dictionary of {state: capital} pairs.
     """
     states = {}
 
-    # TODO:
-    # - open file
-    # - for each line: strip newline, split by ',', assign into dict
-    # - return dict
+    #Opens the file and puts each pair into the dictionary.
+    file = open(filename, "r")
+    for line in file:
+        line = file.readline()
+        pair = line.split(',')
+
+        #The state is the key and the capital is the value.
+        states[str(pair[0])] = str(pair[1].strip('\n'))
+    file.close()
 
     return states
 
@@ -59,4 +65,8 @@ def main():
     # TODO: loop exactly 10 times and tally points
 
     # TODO: final summary line similar to example output
+
+    read_file_to_dictionary("CECS-277\\Lab5\\statecapitals.txt")
+
+
 main()
