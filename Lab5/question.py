@@ -26,14 +26,23 @@ class Question:
         - Determine the correct letter answer after shuffle
         """
         # 1) Pick random state/capital
-        self._state = ""             # TODO
-        self._correct_capital = ""   # TODO
+        all_states = list(states.keys())
+        rand_state = random.choice(all_states)
+        self._state = rand_state
+        self._correct_capital = states[rand_state]
+
+        all_capitals = list(states.values())
+        incorrects = [c for c in all_capitals if c != self._correct_capital]
 
         # 2) Set possible choices (must be a list like ["A","B","C","D"])
-        self._possible_choices = []  # TODO: set to A-D :contentReference[oaicite:4]{index=4}
+        self._possible_choices = ["A", "B", "C", "D"]
 
         # 3) Build selections list (capitals user sees)
-        self._selections = []        # TODO: include correct + random incorrects (unique) :contentReference[oaicite:5]{index=5}
+        self._selections = [self._correct_capital]
+        while len(self._selections) < 4:
+            incorrect = random.choice(incorrects)
+            if incorrect not in self._selections:
+                self._selections.append(incorrect)
 
         # 4) Shuffle selections
         # TODO: random.shuffle(self._selections) :contentReference[oaicite:6]{index=6}
