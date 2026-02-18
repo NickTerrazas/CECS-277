@@ -10,10 +10,8 @@ class Question:
     """
     Represents a single multiple-choice question about a state's capital.
 
-    Required attributes (do not rename): _state, _correct_capital, _possible_choices,
-    _selections, _answer.
+    Attributes: _state, _correct_capital, _possible_choices, _selections, _answer.
     """
-
     def __init__(self, states: dict):
         """
         states: dictionary of {state: capital} pairs.
@@ -21,7 +19,7 @@ class Question:
         Steps required by spec (high level):
         - Choose a random state/capital pair
         - Set possible choices (A-D by default)
-        - Build selections list with correct + incorrect (no duplicates)
+        - Build selections list with correct + incorrect
         - Shuffle selections
         - Determine the correct letter answer after shuffle
         """
@@ -34,7 +32,7 @@ class Question:
         all_capitals = list(states.values())
         incorrects = [c for c in all_capitals if c != self._correct_capital]
 
-        # 2) Set possible choices (must be a list like ["A","B","C","D"])
+        # 2) Set possible choices
         self._possible_choices = ["A", "B", "C", "D"]
 
         # 3) Build selections list (capitals user sees)
@@ -47,7 +45,7 @@ class Question:
         # 4) Shuffle selections
         random.shuffle(self._selections)
 
-        # 5) Set answer to the correct letter AFTER shuffle
+        # 5) Set answer to the correct letter
         self._answer = self._possible_choices[self._selections.index(self._correct_capital)]
 
     @property
