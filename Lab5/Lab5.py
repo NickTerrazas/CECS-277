@@ -37,7 +37,13 @@ def get_user_choice(valid_options: list[str]) -> str:
     # - while selection not in valid_options:
     #     print error similar to example (ex: "Invalid input. Enter A-D.")
     # - return valid selection
-    return ""
+
+    choice = str(input("Enter choice: ")).upper()
+    while choice not in valid_options:
+        print("Invalid input. Enter " + valid_options[0] + "-" + valid_options[-1] + ".")
+        choice = str(input("Enter choice: ")).upper()
+        
+    return choice
 
 
 def ask_question(number: int, states: dict) -> int:
@@ -51,22 +57,26 @@ def ask_question(number: int, states: dict) -> int:
     # - selection = get_user_choice(q.possible_choices)
     # - if q.check_correct(selection): print(q.correct_response()); return 1
     #   else: print(q.incorrect_response()); return 0
+
+    print(str(number) + ") The capital of " + "___" + " is:" )
+
     return 0
 
 
 def main():
     print("- State Capitals Quiz -")
-
-    # TODO: read states dict
-    # states = read_file_to_dictionary("statecapitals.txt")
+    states = read_file_to_dictionary("CECS-277\\Lab5\\statecapitals.txt")
 
     score = 0
+    question = 0
+
+    while question < 10:
+        question += 1
+        ask_question(question, states)
+        guess = get_user_choice(["A", "B", "C", "D"])
 
     # TODO: loop exactly 10 times and tally points
 
     # TODO: final summary line similar to example output
-
-    read_file_to_dictionary("CECS-277\\Lab5\\statecapitals.txt")
-
 
 main()
