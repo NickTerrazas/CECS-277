@@ -45,27 +45,26 @@ class Question:
                 self._selections.append(incorrect)
 
         # 4) Shuffle selections
-        # TODO: random.shuffle(self._selections) :contentReference[oaicite:6]{index=6}
+        random.shuffle(self._selections)
 
         # 5) Set answer to the correct letter AFTER shuffle
-        self._answer = ""            # TODO :contentReference[oaicite:7]{index=7}
+        self._answer = self._possible_choices[self._selections.index(self._correct_capital)]
 
     @property
     def possible_choices(self):
         return self._possible_choices
 
     def check_correct(self, selection: str) -> bool:
-        # TODO: compare selection to self._answer
-        return False
+        return selection.upper() == self._answer
 
     def incorrect_response(self) -> str:
-        # TODO: return formatted string like example output
-        return ""
+        return f"Sorry, the correct answer is {self._answer}."
 
     def correct_response(self) -> str:
-        # TODO: return formatted string like example output
-        return ""
+        return f"Correct! The capital of {self._state} is {self._correct_capital}."
 
     def __str__(self) -> str:
-        # TODO: build string using self._state, self._possible_choices, self._selections
-        return ""
+        output = f"Which is the capital of {self._state}?\n"
+        for i in range(len(self._selections)):
+            output += f"{self._possible_choices[i]}. {self._selections[i]}\n"
+        return output
