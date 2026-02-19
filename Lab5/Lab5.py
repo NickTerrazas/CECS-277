@@ -69,14 +69,24 @@ def ask_question(number: int, states: dict) -> int:
     # - if q.check_correct(selection): print(q.correct_response()); return 1
     #   else: print(q.incorrect_response()); return 0
 
-    print("\n" + str(number) + ") The capital of " + "___" + " is:" )
+    q = Question(states)
+
+
+    print(f"{number}. {q}")
+    selection = get_user_choice(q.possible_choices)
+    
+    if(q.check_correct(selection)): 
+        print(q.correct_response())
+        return 1
+    else:
+        print(q.incorrect_response)
 
     return 0
 
 
 def main():
     print("- State Capitals Quiz -")
-    states = read_file_to_dictionary("CECS-277\\Lab5\\statecapitals.txt")
+    states = read_file_to_dictionary("Lab5/statecapitals.txt")
 
     score = 0
     question = 0
