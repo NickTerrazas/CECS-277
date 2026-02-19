@@ -9,8 +9,10 @@ import check_input
 
 def read_file_to_dictionary(filename: str) -> dict:
     """
-    Takes in the name of a file and puts the contents into a dictionary, with states as keys and capitals as values.
+    Description: Takes in the name of a file and puts the contents into a dictionary, with states as keys and capitals as values.
+    
     Parameters: The name of the file to read from.
+
     Returns: A dictionary of {state: capital} pairs.
     """
     states = {}
@@ -30,24 +32,33 @@ def read_file_to_dictionary(filename: str) -> dict:
 
 def get_user_choice(valid_options: list[str]) -> str:
     """
-    Prompt user for a choice, uppercase it, and keep reprompting until it's valid.
+    Description: Takes in a list of strings as valid options and prompts the user to enter a choice until they enter a valid one.
+    Automatically capitalizes the user's input.
+    
+    Parameters: A list of valid options.
+
+    Returns: The valid choice entered by the user.
     """
-    # TODO:
-    # - build prompt that adapts to list (ex: "Enter choice: ")
-    # - while selection not in valid_options:
-    #     print error similar to example (ex: "Invalid input. Enter A-D.")
-    # - return valid selection
 
     choice = str(input("Enter choice: ")).upper()
+    
+    #checks if the choice is valid, if not it prompts the user to enter a valid choice until they do.
     while choice not in valid_options:
         print("Invalid input. Enter " + valid_options[0] + "-" + valid_options[-1] + ".")
         choice = str(input("Enter choice: ")).upper()
-        
+
     return choice
 
 
 def ask_question(number: int, states: dict) -> int:
     """
+    Description: ___
+
+    Parameters: ___
+
+    Returns: ___
+    
+    Needs:
     Create a Question, print it, get user input, check correctness,
     print response, and return 1 if correct else 0.
     """
@@ -58,7 +69,7 @@ def ask_question(number: int, states: dict) -> int:
     # - if q.check_correct(selection): print(q.correct_response()); return 1
     #   else: print(q.incorrect_response()); return 0
 
-    print(str(number) + ") The capital of " + "___" + " is:" )
+    print("\n" + str(number) + ") The capital of " + "___" + " is:" )
 
     return 0
 
@@ -73,9 +84,11 @@ def main():
     while question < 10:
         question += 1
         ask_question(question, states)
-        guess = get_user_choice(["A", "B", "C", "D"])
+        guess = get_user_choice(["A", "B", "C", "D"])   #Need this list to pull from the Question object.
 
-    # TODO: loop exactly 10 times and tally points
+    print("\nEnd of test. You got " + str(score) + " out of " + str(question) + " correct!\n")
+    
+    # TODO: tally points from the 10 loops
 
     # TODO: final summary line similar to example output
 

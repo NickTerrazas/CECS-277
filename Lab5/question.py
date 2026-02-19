@@ -37,7 +37,7 @@ class Question:
 
         # 3) Build selections list (capitals user sees)
         self._selections = [self._correct_capital]
-        while len(self._selections) < 4:
+        while len(self._selections) < 4:    #Need it to automatically loop based on the number of letters as choices, as per rubric. Try len(self._possible_choices).
             incorrect = random.choice(incorrects)
             if incorrect not in self._selections:
                 self._selections.append(incorrect)
