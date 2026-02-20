@@ -52,54 +52,34 @@ def get_user_choice(valid_options: list[str]) -> str:
 
 def ask_question(number: int, states: dict) -> int:
     """
-    Description: ___
+    Description: Asks the user a question about state capitals and checks if their answer is correct. Prints the appropriate response and returns 1 if correct, else 0.
 
-    Parameters: ___
+    Parameters: The number of the question being asked and a dictionary of {state: capital} pairs.
 
-    Returns: ___
-    
-    Needs:
-    Create a Question, print it, get user input, check correctness,
-    print response, and return 1 if correct else 0.
+    Returns: 1 if the user answered correctly, 0 otherwise. Will be used to calculate the user's score at the end of the quiz.
     """
-    # TODO:
-    # - q = Question(states)
-    # - print(f"{number}. {q}")  OR print number separately then q
-    # - selection = get_user_choice(q.possible_choices)
-    # - if q.check_correct(selection): print(q.correct_response()); return 1
-    #   else: print(q.incorrect_response()); return 0
-
     q = Question(states)
-
-
     print(f"{number}. {q}")
     selection = get_user_choice(q.possible_choices)
-    
-    if(q.check_correct(selection)): 
+    if q.check_correct(selection):
         print(q.correct_response())
         return 1
     else:
-        print(q.incorrect_response)
+        print(q.incorrect_response())
+        return 0
 
-    return 0
 
 
 def main():
     print("- State Capitals Quiz -")
-    states = read_file_to_dictionary("Lab5/statecapitals.txt")
+    states = read_file_to_dictionary("statecapitals.txt")
 
     score = 0
     question = 0
-
     while question < 10:
         question += 1
-        ask_question(question, states)
-        guess = get_user_choice(["A", "B", "C", "D"])   #Need this list to pull from the Question object.
+        score += ask_question(question, states)
 
     print("\nEnd of test. You got " + str(score) + " out of " + str(question) + " correct!\n")
-    
-    # TODO: tally points from the 10 loops
-
-    # TODO: final summary line similar to example output
 
 main()
