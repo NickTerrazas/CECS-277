@@ -1,10 +1,16 @@
 #Nicholas Terrazas and Devin Heinemann
 #Lab 5
 #02/16/2026
+
 #Description: 
+#Takes in a file of state/capital pairs.
+#Assigns the pairs to a dictionary.
+#Creates a Question class to represent a single multiple choice question.
+#Randomly selects a state/capital pair and generates 3 additional incorrect choices for each question.
+#Asks the user 10 questions and keeps track of their score.
+#Displays the user's final score at the end of the quiz.
 
 from question import Question
-import check_input
 
 
 def read_file_to_dictionary(filename: str) -> dict:
@@ -71,8 +77,8 @@ def ask_question(number: int, states: dict) -> int:
 
 
 def main():
-    print("- State Capitals Quiz -")
-    states = read_file_to_dictionary("statecapitals.txt")
+    print("\n- State Capitals Quiz -\n")
+    states = read_file_to_dictionary("CECS-277\Lab5\statecapitals.txt")
 
     score = 0
     question = 0
@@ -80,6 +86,6 @@ def main():
         question += 1
         score += ask_question(question, states)
 
-    print("\nEnd of test. You got " + str(score) + " out of " + str(question) + " correct!\n")
+    print("End of test. You got " + str(score) + " out of " + str(question) + " correct!\n")
 
 main()

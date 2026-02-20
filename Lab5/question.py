@@ -37,7 +37,7 @@ class Question:
 
         # 3) Build selections list (capitals user sees)
         self._selections = [self._correct_capital]
-        while len(self._selections) < 4:    #Need it to automatically loop based on the number of letters as choices, as per rubric. Try len(self._possible_choices).
+        while len(self._selections) < len(self._possible_choices):
             incorrect = random.choice(incorrects)
             if incorrect not in self._selections:
                 self._selections.append(incorrect)
@@ -64,5 +64,5 @@ class Question:
     def __str__(self) -> str:
         output = f"Which is the capital of {self._state}?\n"
         for i in range(len(self._selections)):
-            output += f"{self._possible_choices[i]}. {self._selections[i]}\n"
+            output += f" {self._possible_choices[i]}. {self._selections[i]}\n"
         return output
