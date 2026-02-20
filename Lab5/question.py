@@ -56,7 +56,7 @@ class Question:
         return selection.upper() == self._answer
 
     def incorrect_response(self) -> str:
-        return f"Sorry, the correct answer is {self._answer}.\n"
+        return f"Sorry, the correct answer is {self._answer}: {self._correct_capital}.\n"
 
     def correct_response(self) -> str:
         return f"Correct! The capital of {self._state} is {self._correct_capital}.\n"
