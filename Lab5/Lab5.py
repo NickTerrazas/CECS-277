@@ -78,7 +78,7 @@ def ask_question(number: int, states: dict) -> int:
 
 def main():
     print("\n- State Capitals Quiz -\n")
-    states = read_file_to_dictionary("CECS-277\Lab5\statecapitals.txt")
+    states = read_file_to_dictionary("Lab5\statecapitals.txt")
 
     score = 0
     question = 0
