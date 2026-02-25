@@ -49,11 +49,11 @@ def get_menu_choice():
     Displays main menu and returns validated user choice.
     """
     print("Rolodex Menu:")
-    print("1. Display Contacts")
-    print("2. Add Contact")
-    print("3. Search Contacts")
-    print("4. Modify Contact")
-    print("5. Save and Quit")
+    print(" 1. Display Contacts")
+    print(" 2. Add Contact")
+    print(" 3. Search Contacts")
+    print(" 4. Modify Contact")
+    print(" 5. Save and Quit")
 
     choice = get_int_range(">", 1, 5)
     return choice
@@ -67,13 +67,13 @@ def modify_contact(cont):
 
     while choice != 7:
         print("Modify Menu:")
-        print("1. First name")
-        print("2. Last name")
-        print("3. Phone")
-        print("4. Address")
-        print("5. City")
-        print("6. Zip")
-        print("7. Save")
+        print(" 1. First name")
+        print(" 2. Last name")
+        print(" 3. Phone")
+        print(" 4. Address")
+        print(" 5. City")
+        print(" 6. Zip")
+        print(" 7. Save")
 
         choice = get_int_range(">", 1, 7)
 
@@ -100,6 +100,8 @@ def modify_contact(cont):
         if choice == 6:
             new_zip = input("Enter new zip code: ")
             cont._zip = new_zip
+        if choice == 7:
+            print("Contact saved.\n")
 
 
 #Helper functions for main menu options
@@ -117,6 +119,7 @@ def add_contact(contacts):
     address = input("Enter address: ")
     city = input("Enter city: ")
     zip_code = input("Enter zip code: ")
+    print("Contact added\n")
 
     new_contact = Contact(first_name, last_name, phone, address, city, zip_code)
     contacts.append(new_contact)
@@ -128,17 +131,17 @@ def search_contacts(contacts):
 
     if search_type == 1:
         last_name = input("Enter last name to search: ")
-        matches = [contact for contact in contacts if contact._l_name == last_name]
+        matches = [contact for contact in contacts if contact._l_name.lower() == last_name.lower()]
     else:
         zip_code = input("Enter zip code to search: ")
         matches = [contact for contact in contacts if contact._zip == zip_code]
 
     if matches:
-        print(f"Found {len(matches)} matching contacts:")
+        print(f"\nFound {len(matches)} matching contacts:")
         for contact in matches:
             print(contact)
     else:
-        print("No matching contacts found.")
+        print("\nNo matching contacts found.\n")
 
 
 def find_contact(contacts, first, last):
@@ -146,7 +149,7 @@ def find_contact(contacts, first, last):
     Returns matching contact object or None.
     """
     for contact in contacts:
-        if contact._f_name == first and contact._l_name == last:
+        if contact._f_name.lower() == first.lower() and contact._l_name.lower() == last.lower():
             return contact
     return None
 
@@ -175,10 +178,11 @@ def main():
 
             cont = find_contact(contacts, first, last)
             if cont:
+                print(f"\nContact found: {cont}")
                 modify_contact(cont)
                 contacts.sort()
             else:
-                print("Contact not found.")
+                print("\nContact not found.\n")
 
         elif choice == 5:
             print("Saving File...")
