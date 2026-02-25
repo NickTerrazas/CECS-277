@@ -80,26 +80,26 @@ def modify_contact(cont):
         if choice == 1:
             # prompt for new first name
             new_first = input("Enter new first name: ")
-            cont.set_first_name(new_first)
+            cont._f_name = new_first
         if choice == 2:
             # prompt for new last name
             new_last = input("Enter new last name: ")
-            cont.set_last_name(new_last)
+            cont._l_name = new_last
         if choice == 3:
             #prompt for new phone number
             new_phone = input("Enter new phone number: ")
-            cont.set_phone(new_phone)
+            cont._phone = new_phone
         if choice == 4:
             #prompt for new address
             new_address = input("Enter new address: ")
-            cont.set_address(new_address)
+            cont._address = new_address
         if choice == 5:
             #prompt for new city
             new_city = input("Enter new city: ")
-            cont.set_city(new_city)
+            cont._city = new_city
         if choice == 6:
             new_zip = input("Enter new zip code: ")
-            cont.set_zip(new_zip)
+            cont._zip = new_zip
 
 
 #Helper functions for main menu options
