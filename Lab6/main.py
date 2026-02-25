@@ -105,7 +105,7 @@ def modify_contact(cont):
 #Helper functions for main menu options
 def display_contacts(contacts):
     """Displays number of contacts and enumerated list."""
-    print(f"Number of contacts: {len(contacts)}")
+    print(f"Number of contacts: {len(contacts)}" + "\n")
     for i, contact in enumerate(contacts, 1):
         print(f"{i}. {contact}")
 
@@ -124,14 +124,14 @@ def add_contact(contacts):
 
 def search_contacts(contacts):
     """Search by last name or zip and display matches."""
-    search_type = get_int_range("Search by: 1. Last Name\n 2. Zip Code >", 1, 2)
+    search_type = get_int_range("Search by: \n 1. Last Name\n 2. Zip Code \n >", 1, 2)
 
     if search_type == 1:
         last_name = input("Enter last name to search: ")
-        matches = [contact for contact in contacts if contact.get_last_name() == last_name]
+        matches = [contact for contact in contacts if contact._l_name == last_name]
     else:
         zip_code = input("Enter zip code to search: ")
-        matches = [contact for contact in contacts if contact.get_zip() == zip_code]
+        matches = [contact for contact in contacts if contact._zip == zip_code]
 
     if matches:
         print(f"Found {len(matches)} matching contacts:")
@@ -146,7 +146,7 @@ def find_contact(contacts, first, last):
     Returns matching contact object or None.
     """
     for contact in contacts:
-        if contact.get_first_name() == first and contact.get_last_name() == last:
+        if contact._f_name == first and contact._l_name == last:
             return contact
     return None
 
