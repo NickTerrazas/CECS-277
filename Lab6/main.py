@@ -6,7 +6,9 @@
 
 from contact import Contact
 from check_input import get_int_range
+import os
 
+file_path = os.path.abspath("Lab6\\addresses.txt")
 
 def read_file():
     """
@@ -15,7 +17,7 @@ def read_file():
     """
     contacts = []
 
-    with open("Lab6\\addresses.txt", "r") as f:
+    with open(file_path, "r") as f:
         # read lines
         lines = f.readlines()
 
@@ -26,6 +28,7 @@ def read_file():
 
     #sort contacts by last name, then first name
     contacts.sort()
+    f.close()
     return contacts
 
 
@@ -34,9 +37,11 @@ def write_file(contacts):
     Writes all contacts back to the file using repr(contact).
     """
     # open file for writing
-    with open("Lab6\\addresses.txt", "w") as f:
+    with open(file_path, "w") as f:
         for contact in contacts:
             f.write(repr(contact) + "\n")
+    f.close()
+
 
 
 def get_menu_choice():
