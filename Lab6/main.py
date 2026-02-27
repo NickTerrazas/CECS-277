@@ -2,13 +2,17 @@
 #Lab 6
 #02/23/2026
 
-#Description: 
-
 from contact import Contact
 from check_input import get_int_range
 import os
 
-file_path = os.path.abspath("Lab6\\addresses.txt")
+'''
+file_path was used for testing purposes to ensure the file was being read and 
+written to correctly, but was not needed in the final version of the program. 
+The file is read and written to using the relative path "addresses.txt", which 
+is in the same directory as main.py and contact.py. 
+'''
+#file_path = os.path.abspath("Lab6\\addresses.txt")
 
 def read_file():
     """
@@ -17,7 +21,7 @@ def read_file():
     """
     contacts = []
 
-    with open(file_path, "r") as f:
+    with open("addresses.txt", "r") as f:
         # read lines
         lines = f.readlines()
 
@@ -37,7 +41,7 @@ def write_file(contacts):
     Writes all contacts back to the file using repr(contact).
     """
     # open file for writing
-    with open(file_path, "w") as f:
+    with open("addresses.txt", "w") as f:
         for contact in contacts:
             f.write(repr(contact) + "\n")
     f.close()
