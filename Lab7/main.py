@@ -2,6 +2,8 @@
 #Lab 7
 #03/02/2026
 
+import player
+import check_input
 
 def main():
 
