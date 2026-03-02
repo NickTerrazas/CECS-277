@@ -9,7 +9,7 @@ class Player:
     This class creates 3 dice objects from the die class and keeps track of the player's score and the dice they have rolled.
     The point of the player class is to keep track of the player's score and the dice they have rolled.
     """
-    def __init__(self, dice_list):
+    def __init__(self):
         self.dice_list = [die.Die() for c in range(3)]
         self.score = 0
     
@@ -27,7 +27,8 @@ class Player:
         #Waiting until die class is complete to test this method
         for i in range(len(dice_list)):
             dice_list[i].roll()
-            self.dice_list[i] = dice_list[i].get_value()
+            #TODO fix to make a working sort
+            self.dice_list[i] = dice_list[i]._value()
 
     def has_pair(self):
         """
