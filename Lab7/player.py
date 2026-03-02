@@ -10,7 +10,7 @@ class Player:
     The point of the player class is to keep track of the player's score and the dice they have rolled.
     """
     def __init__(self, dice_list):
-        self.dice_list = dice_list
+        self.dice_list = [die.Die() for c in range(3)]
         self.score = 0
     
     def points(self):
