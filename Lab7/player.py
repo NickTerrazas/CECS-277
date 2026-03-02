@@ -17,18 +17,18 @@ class Player:
         """
         This method calculates the player's score based on the dice they have rolled.
         """
-        self.score = sum(self.dice_list)
+        #TODO get the score to work
+        self.score += 1
         return self.score
     
     def roll_dice(self, dice_list):
         """
         """
         #Call roll method from die class to roll the dice and update the player's dice list
-        #Waiting until die class is complete to test this method
         for i in range(len(dice_list)):
             dice_list[i].roll()
-            #TODO fix to make a working sort
-            self.dice_list[i] = dice_list[i]._value()
+            self.dice_list[i] = dice_list[i]
+        self.dice_list.sort()
 
     def has_pair(self):
         """
@@ -49,11 +49,13 @@ class Player:
     def has_series(self):
         """
         """
-        if sorted(self.dice_list) == [1, 2, 3] or sorted(self.dice_list) == [2, 3, 4] or sorted(self.dice_list) == [3, 4, 5] or sorted(self.dice_list) == [4, 5, 6]:
+        #TODO redo series test. This keeps giving errors. List is already sorted so no need to use 'sorted'
+        """if sorted(self.dice_list) == [1, 2, 3] or sorted(self.dice_list) == [2, 3, 4] or sorted(self.dice_list) == [3, 4, 5] or sorted(self.dice_list) == [4, 5, 6]:
             self.score += 2
             return True
         else:
-            return False
+            return False"""
+        return False
         
     def __str__(self):
-        print("D1 =" + str(self.dice_list[0]) + ", D2 = " + str(self.dice_list[1]) + ", D3 = " + str(self.dice_list[2]) + ", Score: " + str(self.score))
+        print("D1 = " + str(self.dice_list[0]) + ", D2 = " + str(self.dice_list[1]) + ", D3 = " + str(self.dice_list[2]))
