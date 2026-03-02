@@ -6,8 +6,6 @@
 import player
 import check_input
 
-#def take_turn(player):
-
 def main():
     player1 = player.Player()
     play = True
