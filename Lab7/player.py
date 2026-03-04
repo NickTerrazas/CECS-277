@@ -15,13 +15,18 @@ class Player:
     
     def points(self):
         """
-        This method calculates the player's score based on the dice they have rolled.
+        Sets the player's score to the current score and returns it.
+        Parameters: self represents the player object.
+        Returns: The player's score.
         """
 
         return self.score
     
     def roll_dice(self, dice_list):
         """
+        Rolls the dice and sets the values of each die into a list of die objects. It then sorts
+        the list of objects.
+        Parameters: self, dice_list represents the list of dice objects that the player has rolled.
         """
         #Call roll method from die class to roll the dice and update the player's dice list
         for i in range(len(dice_list)):
@@ -31,6 +36,10 @@ class Player:
 
     def has_pair(self):
         """
+        Checks if the player has a pair of dice with the same value. If the player has a pair, 
+        it increments the player's score by 1 and returns True. Otherwise, it returns False.
+        Parameters: self represents the player object.
+        Returns: True if the player has a pair, False otherwise.
         """
         if self.dice_list[0] == self.dice_list[1] or self.dice_list[0] == self.dice_list[2] or self.dice_list[1] == self.dice_list[2]:
             self.score += 1
@@ -40,6 +49,10 @@ class Player:
     
     def has_three_of_a_kind(self):
         """
+        Checks if the player has three dice with the same value. If the player has three of a kind, 
+        it increments the player's score by 2 plus the score from has_pair and returns True. Otherwise, it returns False.
+        Parameters: self represents the player object.
+        Returns: True if the player has three of a kind, False otherwise.
         """
         if self.dice_list[0] == self.dice_list[1] and self.dice_list[0] == self.dice_list[2]:
             #Incremeting score by 2 because has_pair will already increment score by 1 giving a total of 3 points.
@@ -50,6 +63,10 @@ class Player:
     
     def has_series(self):
         """
+        Checks if the player has a series of three consecutive dice. If the player has a series, 
+        it increments the player's score by 2 and returns True. Otherwise, it returns False.
+        Parameters: self represents the player object.
+        Returns: True if the player has a series, False otherwise.
         """
         die1 = self.dice_list[0]
         die2 = self.dice_list[1]
@@ -61,14 +78,6 @@ class Player:
             return True
         else:
             return False
-        #TODO redo series test. This keeps giving errors. List is already sorted so no need to use 'sorted'
-        
-
-        '''if self.dice_list == [1, 2, 3] or self.dice_list == [2, 3, 4] or self.dice_list == [3, 4, 5] or self.dice_list == [4, 5, 6]:
-            self.score += 2
-            return True
-        else:
-            return False'''
         
     def __str__(self):
         print("D1 = " + str(self.dice_list[0]) + ", D2 = " + str(self.dice_list[1]) + ", D3 = " + str(self.dice_list[2]))
