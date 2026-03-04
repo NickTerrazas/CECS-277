@@ -1,6 +1,17 @@
 #Nicholas Terrazas and Devin Heinemann
 #Lab 7
 #03/02/2026
+'''
+A dice game that awards the user points for a pair, three-of-a-kind, or a series.
+The program repeatedly rolls three dice and calculates any points based on the game rules.
+The user can choose to continue or end the game and subsequently get the final score.
+
+The game rules are as follows:
+- A pair (two dice with the same value) awards 1 point.
+- Three-of-a-kind (three dice with the same value) awards 3 points (1 point for the pair and an additional 2 points for the three-of-a-kind).
+- A series (three consecutive values) awards 2 points.
+- If none of the above combinations are rolled, the player scores 0 points for that turn.
+'''
 
 import player
 import check_input
