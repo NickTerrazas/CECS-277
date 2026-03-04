@@ -36,7 +36,7 @@ def main():
         if cont == False:
             play = False
         
-    print("Game Over.")
+    print("\nGame Over.")
     print("Final Score = " + str(player1.score))
 
 if __name__ == "__main__":

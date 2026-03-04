@@ -17,8 +17,7 @@ class Player:
         """
         This method calculates the player's score based on the dice they have rolled.
         """
-        #TODO get the score to work
-        self.score += 1
+
         return self.score
     
     def roll_dice(self, dice_list):
@@ -34,6 +33,7 @@ class Player:
         """
         """
         if self.dice_list[0] == self.dice_list[1] or self.dice_list[0] == self.dice_list[2] or self.dice_list[1] == self.dice_list[2]:
+            self.score += 1
             return True
         else:
             return False
@@ -42,6 +42,8 @@ class Player:
         """
         """
         if self.dice_list[0] == self.dice_list[1] and self.dice_list[0] == self.dice_list[2]:
+            #Incremeting score by 2 because has_pair will already increment score by 1 giving a total of 3 points.
+            self.score += 2
             return True
         else:
             return False
@@ -49,13 +51,24 @@ class Player:
     def has_series(self):
         """
         """
-        #TODO redo series test. This keeps giving errors. List is already sorted so no need to use 'sorted'
-        """if sorted(self.dice_list) == [1, 2, 3] or sorted(self.dice_list) == [2, 3, 4] or sorted(self.dice_list) == [3, 4, 5] or sorted(self.dice_list) == [4, 5, 6]:
+        die1 = self.dice_list[0]
+        die2 = self.dice_list[1]
+        die3 = self.dice_list[2]
+
+
+        if (die1 -die2) == 1 and (die2 - die3) == 1:
             self.score += 2
             return True
         else:
-            return False"""
-        return False
+            return False
+        #TODO redo series test. This keeps giving errors. List is already sorted so no need to use 'sorted'
+        
+
+        '''if self.dice_list == [1, 2, 3] or self.dice_list == [2, 3, 4] or self.dice_list == [3, 4, 5] or self.dice_list == [4, 5, 6]:
+            self.score += 2
+            return True
+        else:
+            return False'''
         
     def __str__(self):
         print("D1 = " + str(self.dice_list[0]) + ", D2 = " + str(self.dice_list[1]) + ", D3 = " + str(self.dice_list[2]))
