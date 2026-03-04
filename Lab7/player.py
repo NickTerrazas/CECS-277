@@ -80,4 +80,4 @@ class Player:
             return False
         
     def __str__(self):
-        print("D1 = " + str(self.dice_list[0]) + ", D2 = " + str(self.dice_list[1]) + ", D3 = " + str(self.dice_list[2]))
+        print("\nD1 = " + str(self.dice_list[0]) + ", D2 = " + str(self.dice_list[1]) + ", D3 = " + str(self.dice_list[2]))

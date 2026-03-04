@@ -29,7 +29,7 @@ class Die:
         """
         Returns a string representation of the value of the current roll of the die.
         """
-        return f"Roll: {self._value}"
+        return f"{self._value}"
     
     def __lt__(self, other):
         """
