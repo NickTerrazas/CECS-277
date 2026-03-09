@@ -18,9 +18,10 @@ def main():
 
     print(f"Welcome to dragon training, {hero_name}!\nYou must defeat 3 dragons!\n")
 
-    print(f"{hero_name}: {hero._hp}/{hero._max_hp}")
-    
-
+    print(hero.__str__())
+    print("1. Attack " + dragons[0].__str__())
+    print("2. Attack " + dragons[1].__str__())
+    print("3. Attack " + dragons[2].__str__())
 
 
 if __name__ == "__main__":
