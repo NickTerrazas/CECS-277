@@ -14,7 +14,7 @@ class FireDragon(dragon.Dragon):
         if self.fire_shots > 0:
             damage = random.randint(6, 9)
             print(f"The fire dragon breathes fire at you for {damage} damage")
-            #hero.take_damage(damage)
+            hero.take_damage(damage)
             self.fire_shots -= 1
         else:
             print("The fire dragon is out of fire shots and uses a basic attack instead.")

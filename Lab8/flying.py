@@ -14,7 +14,7 @@ class FlyingDragon(dragon.Dragon):
         if self.swoops > 0:
             damage = random.randint(5, 8)
             print(f"The flying dragon swoops at you for {damage} damage")
-            #hero.take_damage(damage)
+            hero.take_damage(damage)
             self.swoops -= 1
         else:
             print("The flying dragon is out of swoops and uses a basic attack instead.")

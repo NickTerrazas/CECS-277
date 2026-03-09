@@ -16,12 +16,12 @@ def main():
     hero = Hero(hero_name, 50)
     dragons = [Dragon("Deadly Nadder", 10), FireDragon("Gronkle", 15), FlyingDragon("Timberjack", 20)]
 
-    print(f"Welcome to dragon training, {hero_name}!\n You must defeat 3 dragons!")
+    print(f"Welcome to dragon training, {hero_name}!\nYou must defeat 3 dragons!\n")
 
-    print(f"{hero_name}: {hero.hp}/{hero.max_hp}")
+    print(f"{hero_name}: {hero._hp}/{hero._max_hp}")
     
 
 
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
