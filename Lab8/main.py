@@ -19,6 +19,7 @@ def main():
 
     print(f"Welcome to dragon training, {hero_name}!\nYou must defeat 3 dragons!\n")
 
+    #need to implement damage to dragons and hero, and remove dragons from list when they are defeated
     while hero._hp > 0 and len(dragons) > 0:
         print(hero.__str__())
         if len(dragons) > 0:
@@ -31,7 +32,16 @@ def main():
 
         print("Attack with:\n 1. Arrow (1 D12)\n 2. Sword (2 D6)")
         w_choice = check_input.get_int_range("Enter weapon: ", 1, 2)
-
+        if w_choice == 1:
+            damage = hero.arrow_attack("arrow")
+        else:
+            damage = hero.sword_attack("sword")
+        dragons[d_choice - 1]._hp -= damage
+        if dragons[d_choice - 1]._hp <= 0:
+            print(f"{dragons[d_choice - 1]._name} has been defeated!")
+            dragons.pop(d_choice - 1)
+        else:
+            print(f"{dragons[d_choice - 1]._name} has {dragons[d_choice - 1]._hp} health remaining.")
 
 if __name__ == "__main__":
     main()
