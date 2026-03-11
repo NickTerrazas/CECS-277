@@ -45,6 +45,7 @@ def main():
         else:
             print(hero.sword_attack(dragons[d_choice - 1]))
         
+        #If the dragon's hp is 0 or less, it is removed from the list of dragons.
         if dragons[d_choice - 1]._hp <= 0:
             print(f"{dragons[d_choice - 1]._name} has been defeated!")
             dragons.pop(d_choice - 1)
@@ -60,9 +61,11 @@ def main():
                 dragon_choice.special_attack(hero)
             print()
         else:
+            #Player wins if they defeat all 3 dragons.
             print("\nCongratulations! You have defeated all 3 dragons, you have passed the trials.\n")
             return
 
+        #Player loses if they run out of health.
         if hero._hp <= 0:
             print("\nYou have been defeated! Game over.\n")
             return
