@@ -33,10 +33,10 @@ def main():
         print("Attack with:\n 1. Arrow (1 D12)\n 2. Sword (2 D6)")
         w_choice = check_input.get_int_range("Enter weapon: ", 1, 2)
         if w_choice == 1:
-            damage = hero.arrow_attack("arrow")
+            damage = hero.arrow_attack(dragons[d_choice - 1])
         else:
-            damage = hero.sword_attack("sword")
-        dragons[d_choice - 1]._hp -= damage
+            damage = hero.sword_attack(dragons[d_choice - 1])
+        #dragons[d_choice - 1]._hp -= damage
         if dragons[d_choice - 1]._hp <= 0:
             print(f"{dragons[d_choice - 1]._name} has been defeated!")
             dragons.pop(d_choice - 1)

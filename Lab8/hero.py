@@ -20,7 +20,7 @@ class Hero(entity.Entity):
         d2 = random.randint(1, 6)
         damage = d1 + d2
         dragon.take_damage(damage)
-        return f"You slash the {dragon.name} with your sword for {damage} damage."
+        return f"You slash the {dragon._name} with your sword for {damage} damage."
     
     def arrow_attack(self, dragon):
         """
@@ -32,4 +32,4 @@ class Hero(entity.Entity):
         """
         damage = random.randint(1, 12)
         dragon.take_damage(damage)
-        return f"You hit the {dragon.name} with an arrow for {damage} damage."
+        return f"You hit the {dragon._name} with an arrow for {damage} damage."
