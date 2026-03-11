@@ -2,7 +2,13 @@ import entity
 import random
 
 class Dragon(entity.Entity):
-
+    """
+    Dragons are a type of entity that have a name and health points. 
+    They can take damage and have two types of attacks: a basic tail attack and a special claw attack.
+    
+    The basic attack can be used an unlimited number of times, while the special attack can only be 
+    used a limited number of times based on the dragon's health.
+    """
     #Basic tail attack. Deals random damage between 2 and 5
     def basic_attack(self, hero):
         damage = random.randint(2, 5)

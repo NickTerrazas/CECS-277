@@ -2,6 +2,10 @@ import dragon
 import random
 
 class FireDragon(dragon.Dragon):
+    """
+    FireDragon is a subclass of Dragon that creates a new type of dragon with a special fire attack.
+    The fire attack can only be used a limited number of times.
+    """
 
     #Calls super and sets name and hp; also assigns a default number of fire shots(2 or 3)
     def __init__(self, name, hp):
