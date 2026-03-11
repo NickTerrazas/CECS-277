@@ -1,6 +1,3 @@
-#
-#
-
 class Entity:
     """
     An entity is created with basic functionality. It will have a name and health. 
@@ -15,7 +12,6 @@ class Entity:
             name (str): The name of the entity. 
             max_hp (int): The maximum health points of the entity.
         """
-        #TODO: name and hp properties – use decorators to get (not set) the values of _name and _hp.
         self._name = name
         self._max_hp = max_hp
         self._hp = max_hp

@@ -2,6 +2,12 @@
 #Lab 8
 #03/09/2026
 
+# Description: This program is a simple text-based game where the player, as a hero, 
+# must defeat 3 different types of dragons (regular, fire, and flying) using different attacks. 
+# Each dragon has its own unique special attack and the player must strategically choose which 
+# dragon to attack and which weapon to use. The game continues until the player defeats all the 
+# dragons or is defeated by them.
+
 from fire import FireDragon
 from flying import FlyingDragon
 from dragon import Dragon
@@ -20,7 +26,7 @@ def main():
 
     print(f"Welcome to dragon training, {hero_name}!\nYou must defeat 3 dragons!\n")
 
-    #need to implement damage to dragons and hero, and remove dragons from list when they are defeated
+    #Main game loop. Continues until the hero's hp is 0 or all dragons are defeated.
     while hero._hp > 0 and len(dragons) > 0:
         print(hero.__str__())
         if len(dragons) > 0:
@@ -31,6 +37,7 @@ def main():
             print(" 3. Attack " + dragons[2].__str__())
         d_choice = check_input.get_int_range("Which dragon do you want to attack: ", 1, len(dragons))
 
+        #Player selects their attack and the damage is calculated and applied to the dragon.
         print("Attack with:\n 1. Arrow (1 D12)\n 2. Sword (2 D6)")
         w_choice = check_input.get_int_range("Enter weapon: ", 1, 2)
         if w_choice == 1:
@@ -42,6 +49,7 @@ def main():
             print(f"{dragons[d_choice - 1]._name} has been defeated!")
             dragons.pop(d_choice - 1)
 
+        #Similarly to above, a living dragon randomly selects an attack and applies damage to the hero.
         if(len(dragons) > 0):
             dragon_choice = random.choice(dragons)
             attack_choice = random.choice([1,2])
@@ -51,7 +59,6 @@ def main():
             else:
                 dragon_choice.special_attack(hero)
             print()
-
         else:
             print("\nCongratulations! You have defeated all 3 dragons, you have passed the trials.\n")
             return
