@@ -10,19 +10,17 @@ class FireDragon(dragon.Dragon):
     #Calls super and sets name and hp; also assigns a default number of fire shots(2 or 3)
     def __init__(self, name, hp):
         super().__init__(name, hp)
-        #Adjusts the number of fire shots based on the hp.
-        self.fire_shots = 2 if hp < 20 else 3
-    
+        self.fire_shots = 2
+
     #Overriden fire attack. Deals random damage between 6 and 9, and can be used a limited number of times.
     def special_attack(self, hero):
         if self.fire_shots > 0:
             damage = random.randint(6, 9)
-            print(f"The fire dragon breathes fire at you for {damage} damage")
+            print(f"{self._name} breathes fire at you for {damage} damage")
             hero.take_damage(damage)
             self.fire_shots -= 1
         else:
-            print("The fire dragon is out of fire shots and uses a basic attack instead.")
-            super().basic_attack(hero)
+            print(f"{self._name} tries to spit fire at you but is all out of fire shots.")
 
     def __str__(self):
         base_str = super().__str__()

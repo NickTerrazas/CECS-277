@@ -8,6 +8,7 @@ from dragon import Dragon
 from entity import Entity
 from hero import Hero
 import check_input
+import random
 
 
 def main():
@@ -33,15 +34,31 @@ def main():
         print("Attack with:\n 1. Arrow (1 D12)\n 2. Sword (2 D6)")
         w_choice = check_input.get_int_range("Enter weapon: ", 1, 2)
         if w_choice == 1:
-            damage = hero.arrow_attack(dragons[d_choice - 1])
+            print(hero.arrow_attack(dragons[d_choice - 1]))
         else:
-            damage = hero.sword_attack(dragons[d_choice - 1])
-        #dragons[d_choice - 1]._hp -= damage
+            print(hero.sword_attack(dragons[d_choice - 1]))
+        
         if dragons[d_choice - 1]._hp <= 0:
             print(f"{dragons[d_choice - 1]._name} has been defeated!")
             dragons.pop(d_choice - 1)
+
+        if(len(dragons) > 0):
+            dragon_choice = random.choice(dragons)
+            attack_choice = random.choice([1,2])
+
+            if attack_choice == 1:
+                dragon_choice.basic_attack(hero)
+            else:
+                dragon_choice.special_attack(hero)
+            print()
+
         else:
-            print(f"{dragons[d_choice - 1]._name} has {dragons[d_choice - 1]._hp} health remaining.")
+            print("\nCongratulations! You have defeated all 3 dragons, you have passed the trials.\n")
+            return
+
+        if hero._hp <= 0:
+            print("\nYou have been defeated! Game over.\n")
+            return
 
 if __name__ == "__main__":
     main()
