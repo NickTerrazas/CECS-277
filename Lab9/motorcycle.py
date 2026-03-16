@@ -20,7 +20,7 @@ class Motorcycle(vehicle.Vehicle):
 
     def special_move(self, obs_loc):
         """
-        
+
         """
         #Determine if the motorcycle has enough energy.
         if super()._energy >= 15:
@@ -30,7 +30,7 @@ class Motorcycle(vehicle.Vehicle):
                 super()._position += 1
                 return str(super()._name) + " fell over while trying to pop a wheelie and only moves 1 unit."
             else:
-                distance = round(super().speed * 1.5) + random.randint(-1, 1)
+                distance = round(super().speed * 2) + random.randint(-1, 1)
                 #Determine if the motorcycle hits an obstacle
                 if (super()._position + distance) >= obs_loc:
                     super()._position = obs_loc
