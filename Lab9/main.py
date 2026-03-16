@@ -34,25 +34,19 @@ def main():
     choice = get_int_range("Choose your vehicle (1-3): ", 1, 3)
 
     if choice == 1:
-        player = c
-        player._position = 0
+        p = car.Car("Lightning Car", "P", 7)
+        b = motorcycle.Motorcycle("Swift Bike", "M", 8)
+        t = truck.Truck("Behemoth Truck", "T", 6)
     elif choice == 2:
-        player = b
-        player._position = 0
+        c = car.Car("Lightning Car", "C", 7)
+        p = motorcycle.Motorcycle("Swift Bike", "P", 8)
+        t = truck.Truck("Behemoth Truck", "T", 6)
     else:
-        player = t
-        player._position = 0
+        c = car.Car("Lightning Car", "C", 7)
+        b = motorcycle.Motorcycle("Swift Bike", "M", 8)
+        p = truck.Truck("Behemoth Truck", "P", 6)
 
-
-
-    for i in range(3):
-        for j in range(100):
-            if track[i][j] == player._initial:
-                track[i][j] = "P"
-            elif track[i][j] == "O":
-                continue
-            else:
-                track[i][j] = "_"
+    
 
     for lane in track:
         print(" ".join(lane))
