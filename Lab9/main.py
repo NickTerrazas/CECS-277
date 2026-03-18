@@ -81,6 +81,8 @@ def main():
         elif move_choice == 3:
             print(p.special_move(next_obs))
 
+        
+
         #Updates the display.
         for loc in range(len(track[v_choice - 1])):
             if track[v_choice - 1][loc] == "P":

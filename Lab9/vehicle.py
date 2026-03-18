@@ -49,12 +49,13 @@ class Vehicle:
             obs_loc (int): The location of the next obstacle
             
         """
-        self._speed = max(1, self._speed - 1)
-        if self._position + self._speed < obs_loc:
-            self._position += self._speed
-            return f"{self._name} moved {self._speed} spaces."
+        distance = round((self._speed / 2) + random.randint(-1, 1))
+        if self._position + distance < obs_loc:
+            self._position += distance
+            return f"{self._name} moved {distance} spaces."
         else:
             self._position = obs_loc
+            self._position += distance
             return f"{self._name} maneuvered around the obstacle!"
         
 
