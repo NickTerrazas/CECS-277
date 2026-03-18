@@ -28,18 +28,16 @@ class Vehicle:
             obs_loc (int): The location of the next obstacle
         """
         if self._energy >= 5:
-            speed_change = random.randint(-1, 1)
-            self._speed += speed_change
+            distance = self._speed + random.randint(-1, 1)
             self._energy -= 5
+            if self._position + distance < obs_loc:
+                self._position += distance
+                return f"{self._name} moved {distance} spaces."
+            else:
+                self._position = obs_loc
+                return f"{self._name} crashed into the obstacle!"
         else:
-            self._speed = 1
-
-        if self._position + self._speed < obs_loc:
-            self._position += self._speed
-            return f"{self._name} moved {self._speed} spaces."
-        else:
-            self._position = obs_loc
-            return f"{self._name} crashed into the obstacle!"
+            self._position += 1
 
 
     def slow(self, obs_loc):
@@ -49,14 +47,13 @@ class Vehicle:
             obs_loc (int): The location of the next obstacle
             
         """
-        distance = int((self._speed * 0.5) + random.randint(-1, 1))
-        if self._position + distance < obs_loc:
+        distance = int(self._speed * 0.5) + random.randint(-1, 1)
+        if (self._position + distance) >= obs_loc:
             self._position += distance
-            return f"{self._name} moved {distance} spaces."
+            return f"{self._name} slowly dodges the obstacle and moves {distance} units."
         else:
-            self._position = obs_loc
             self._position += distance
-            return f"{self._name} maneuvered around the obstacle!"
+            return f"{self._name} slowly moves {distance} units."
         
 
     def __str__(self):
