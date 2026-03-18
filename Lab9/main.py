@@ -41,16 +41,27 @@ def main():
     t = vehicles[2]
     
     #Sets the player and other vehicles
+
+    #need to also assign variables for the other vehicles so they can be displayed in the status updates and track display.
     p = vehicles[v_choice - 1]
     if v_choice == 1:
+        #Player is the car
         track[0][0] = "P"
         c = p
+        op1 = vehicles[1]
+        op2 = vehicles[2]
     elif v_choice == 2:
+        #Player is the motorcycle
         track[1][0] = "P"
         m = p
+        op1 = vehicles[0]
+        op2 = vehicles[2]
     else:
+        #Player is the truck
         track[2][0] = "P"
         t = p
+        op1 = vehicles[0]
+        op2 = vehicles[1]
 
     #Game Loop.
     p_finish = False
@@ -81,7 +92,21 @@ def main():
         elif move_choice == 3:
             print(p.special_move(next_obs))
 
+        move_choice = random.randint(1, 3)
+        if move_choice == 1:
+            print(op1.fast(next_obs))
+        elif move_choice == 2:
+            print(op1.slow(next_obs))
+        elif move_choice == 3:
+            print(op1.special_move(next_obs))
         
+        move_choice = random.randint(1, 3)
+        if move_choice == 1:
+            print(op2.fast(next_obs))
+        elif move_choice == 2:
+            print(op2.slow(next_obs))
+        elif move_choice == 3:
+            print(op2.special_move(next_obs))
 
         #Updates the display.
         for loc in range(len(track[v_choice - 1])):
