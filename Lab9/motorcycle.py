@@ -49,4 +49,4 @@ class Motorcycle(vehicle.Vehicle):
                     return f"{self._name} pops a wheelie and moves {distance} units."
         else:
             self._position += 1
-            return f"{self._name} did not have enough energy for a nitro boost and only moves 1 unit."
+            return f"{self._name} did not have enough energy for a wheelie and only moves 1 unit."
