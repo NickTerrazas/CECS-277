@@ -14,15 +14,15 @@ class Car(vehicle.Vehicle):
             A string describing how the car will move.
         """
         #Determine if the car has enough energy.
-        if super()._energy >= 15:
-            super()._energy -= 15
-            distance = round(super().speed * 1.5) + random.randint(-1, 1)
+        if self._energy >= 15:
+            self._energy -= 15
+            distance = round(self._speed * 1.5) + random.randint(-1, 1)
             #Determine if the car hits an obstacle
-            if (super()._position + distance) >= obs_loc:
-                super()._position = obs_loc
-                return f"{super()._name} crashes into an obstacle."
+            if (self._position + distance) >= obs_loc:
+                self._position = obs_loc
+                return f"{self._name} crashes into an obstacle."
             else:
-                return f"{super()._name} uses nitro boost and moves {distance} units."
+                return f"{self._name} uses nitro boost and moves {distance} units."
         else:
-            super()._position += 1
-            return f"{super()._name} did not have enough energy for a nitro boost and only moves 1 unit."
+            self._position += 1
+            return f"{self._name} did not have enough energy for a nitro boost and only moves 1 unit."

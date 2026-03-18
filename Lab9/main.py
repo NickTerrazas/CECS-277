@@ -15,43 +15,86 @@ import motorcycle
 import truck
 
 def main():
-    c = car.Car("Lightning Car", "C", 7)
-    b = motorcycle.Motorcycle("Swift Bike", "M", 8)
-    t = truck.Truck("Behemoth Truck", "T", 6)
 
+    #Constructs the tracks and randomly places 2 obstackes in each lane.
     track = [["_" for i in range(100)] for j in range(3)]
     for i in range(3):
         for j in range(2):
             obs_loc = random.randint(1, 98)
             track[i][obs_loc] = "O"
     
-
+    #Information display for player to choose their vehicle.
     print("Rad Racer!")
     print("Choose a vehicle and race it down the track (player = 'P'). Slow down for obstacles ('O') or else you'll crash!")
     print("1. Lightning Car - a fast car. Speed: 7. Special: Nitro Boost (1.5x speed).")
     print("2. Swift Bike - a speedy motorcycle. Speed: 8. Special: Wheelie (2x speed but there's a chance you'll wipe out).")
     print("3. Behemoth Truck - a heavy truck. Speed: 6. Special: Ram (2x speed and it smashes through obstacles).")
-    choice = get_int_range("Choose your vehicle (1-3): ", 1, 3)
+    v_choice = get_int_range("Choose your vehicle (1-3): ", 1, 3)
 
-    if choice == 1:
-        p = car.Car("Lightning Car", "P", 7)
-        b = motorcycle.Motorcycle("Swift Bike", "M", 8)
-        t = truck.Truck("Behemoth Truck", "T", 6)
-    elif choice == 2:
-        c = car.Car("Lightning Car", "C", 7)
-        p = motorcycle.Motorcycle("Swift Bike", "P", 8)
-        t = truck.Truck("Behemoth Truck", "T", 6)
-    else:
-        c = car.Car("Lightning Car", "C", 7)
-        b = motorcycle.Motorcycle("Swift Bike", "M", 8)
-        p = truck.Truck("Behemoth Truck", "P", 6)
-
+    #Creates the vehicles in a list.
+    vehicles = [car.Car("Lightning Car", "P", 7), motorcycle.Motorcycle("Swift Bike", "M", 8), truck.Truck("Behemoth Truck", "T", 6)]
+    track[0][0] = "C"
+    track[1][0] = "M"
+    track[2][0] = "T"
+    c = vehicles[0]
+    m = vehicles[1]
+    t = vehicles[2]
     
+    #Sets the player and other vehicles
+    p = vehicles[v_choice - 1]
+    if v_choice == 1:
+        track[0][0] = "P"
+        c = p
+    elif v_choice == 2:
+        track[1][0] = "P"
+        m = p
+    else:
+        track[2][0] = "P"
+        t = p
 
-    for lane in track:
-        print(" ".join(lane))
+    #Game Loop.
+    p_finish = False
+    while not p_finish:
+
+        print("\nLightning Car [Position - " + str(c._position) + ", Energy - " + str(c._energy) + "]")
+        print("Swift Bike [Position - " + str(m._position) + ", Energy - " + str(m._energy) + "]")
+        print("Behemoth Truck [Position - " + str(t._position) + ", Energy - " + str(t._energy) + "]\n")
+
+        #Displays the track.
+        for lane in track:
+            print(" ".join(lane))
+
+        #Figures out where the next obstacle in the track is, otherwise automatically gets set to the end of the track.
+        next_obs = 100
+        loc_test = 99
+        while loc_test > p._position:
+            if track[v_choice - 1][loc_test] == "O":
+                next_obs = loc_test
+            loc_test -= 1
+
+        #Player chooses their movement.
+        move_choice = get_int_range("Choose action (1. Fast, 2. Slow, 3. Special Move): ", 1, 3)
+        if move_choice == 1:
+            print(p.fast(next_obs))
+        elif move_choice == 2:
+            print(p.slow(next_obs))
+        elif move_choice == 3:
+            print(p.special_move(next_obs))
+
+        #Updates the display.
+        for loc in range(len(track[v_choice - 1])):
+            if track[v_choice - 1][loc] == "P":
+                track[v_choice - 1][loc] = "*"
+                track[v_choice - 1][p._position] = "P"
 
 
+        #Player finish detection
+        if (v_choice == 1 and track [0][99] == "P") or (v_choice == 2 and track [1][99] == "P") or (v_choice == 3 and track [2][99] == "P"):
+            p_finish = True
+
+
+
+    #Need another loop to make sure the rest of the vehicles finish the race.
 
 
 

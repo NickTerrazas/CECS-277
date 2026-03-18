@@ -38,7 +38,7 @@ class Vehicle:
             self._position += self._speed
             return f"{self._name} moved {self._speed} spaces."
         else:
-            self._position = obs_loc - 1
+            self._position = obs_loc
             return f"{self._name} crashed into the obstacle!"
 
 
@@ -54,7 +54,7 @@ class Vehicle:
             self._position += self._speed
             return f"{self._name} moved {self._speed} spaces."
         else:
-            self._position = obs_loc - 1
+            self._position = obs_loc
             return f"{self._name} maneuvered around the obstacle!"
         
 

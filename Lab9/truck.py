@@ -14,15 +14,15 @@ class Truck(vehicle.Vehicle):
             A string representing how the truck moves.
         """
         #Determine if the truck has enough energy.
-        if super()._energy >= 15:
-            super()._energy -= 15
-            distance = round(super().speed * 2) + random.randint(-1, 1)
-            super()._position += distance
+        if self._energy >= 15:
+            self._energy -= 15
+            distance = round(self.speed * 2) + random.randint(-1, 1)
+            self._position += distance
             #Determine if the truck rams through an obstacle
-            if (super()._position + distance) >= obs_loc:
-                return f"{super()._name} rams through an obstacle and moves {distance} units."
+            if (self._position + distance) >= obs_loc:
+                return f"{self._name} rams through an obstacle and moves {distance} units."
             else:
-                return f"{super()._name} moves {distance} units."
+                return f"{self._name} moves {distance} units."
         else:
-            super()._position += 1
-            return f"{super()._name} did not have enough energy for a nitro boost and only moves 1 unit."
+            self._position += 1
+            return f"{self._name} did not have enough energy for a nitro boost and only moves 1 unit."

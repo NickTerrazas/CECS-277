@@ -13,11 +13,11 @@ class Motorcycle(vehicle.Vehicle):
         Returns:
             A string representing how the motorcycle moves.:
         """
-        distance = round(super()._speed * 0.75) + random.randint(-1, 1)
-        if (super()._position + distance) >= obs_loc:
-            return f"{super()._name} slowly dodges the obstacle and moves {distance} units."
+        distance = round(self._speed * 0.75) + random.randint(-1, 1)
+        if (self._position + distance) >= obs_loc:
+            return f"{self._name} slowly dodges the obstacle and moves {distance} units."
         else:
-            return f"{super()._name} slowly moves {distance} units."
+            return f"{self._name} slowly moves {distance} units."
 
 
     def special_move(self, obs_loc):
@@ -30,20 +30,20 @@ class Motorcycle(vehicle.Vehicle):
             A string representing how the motorcycle moves.
         """
         #Determine if the motorcycle has enough energy.
-        if super()._energy >= 15:
-            super()._energy -= 15
+        if self._energy >= 15:
+            self._energy -= 15
             #Determine if the motorcycle will fall over.
             if random.randint(1, 4) == 1:
-                super()._position += 1
-                return f"{super()._name} fell over while trying to pop a wheelie and only moves 1 unit."
+                self._position += 1
+                return f"{self._name} fell over while trying to pop a wheelie and only moves 1 unit."
             else:
-                distance = round(super().speed * 2) + random.randint(-1, 1)
+                distance = round(self.speed * 2) + random.randint(-1, 1)
                 #Determine if the motorcycle hits an obstacle
-                if (super()._position + distance) >= obs_loc:
-                    super()._position = obs_loc
-                    return f"{super()._name} crashes into an obstacle."
+                if (self._position + distance) >= obs_loc:
+                    self._position = obs_loc
+                    return f"{self._name} crashes into an obstacle."
                 else:
-                    return f"{super()._name} pops a wheelie and moves {distance} units."
+                    return f"{self._name} pops a wheelie and moves {distance} units."
         else:
-            super()._position += 1
-            return f"{super()._name} did not have enough energy for a nitro boost and only moves 1 unit."
+            self._position += 1
+            return f"{self._name} did not have enough energy for a nitro boost and only moves 1 unit."
