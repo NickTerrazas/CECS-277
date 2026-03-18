@@ -13,7 +13,7 @@ class Motorcycle(vehicle.Vehicle):
         Returns:
             A string representing how the motorcycle moves.:
         """
-        distance = round(self._speed * 0.75) + random.randint(-1, 1)
+        distance = int(self._speed * 0.75) + random.randint(-1, 1)
         if (self._position + distance) >= obs_loc:
             self._position += distance
             return f"{self._name} slowly dodges the obstacle and moves {distance} units."
@@ -39,7 +39,7 @@ class Motorcycle(vehicle.Vehicle):
                 self._position += 1
                 return f"{self._name} fell over while trying to pop a wheelie and only moves 1 unit."
             else:
-                distance = round(self._speed * 2) + random.randint(-1, 1)
+                distance = int(self._speed * 2) + random.randint(-1, 1)
                 #Determine if the motorcycle hits an obstacle
                 if (self._position + distance) >= obs_loc:
                     self._position = obs_loc

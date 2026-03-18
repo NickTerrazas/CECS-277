@@ -16,7 +16,7 @@ class Car(vehicle.Vehicle):
         #Determine if the car has enough energy.
         if self._energy >= 15:
             self._energy -= 15
-            distance = round(self._speed * 1.5) + random.randint(-1, 1)
+            distance = int(self._speed * 1.5) + random.randint(-1, 1)
             #Determine if the car hits an obstacle
             if (self._position + distance) >= obs_loc:
                 self._position = obs_loc
