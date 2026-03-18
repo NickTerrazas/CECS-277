@@ -65,6 +65,8 @@ def main():
 
     #Game Loop.
     p_finish = False
+    op1_finish = False
+    op2_finish = False
     while not p_finish:
 
         print("\nLightning Car [Position - " + str(c._position) + ", Energy - " + str(c._energy) + "]")
@@ -92,28 +94,58 @@ def main():
         elif move_choice == 3:
             print(p.special_move(next_obs))
 
-        move_choice = random.randint(1, 3)
-        if move_choice == 1:
-            print(op1.fast(next_obs))
-        elif move_choice == 2:
-            print(op1.slow(next_obs))
-        elif move_choice == 3:
-            print(op1.special_move(next_obs))
+        if not op1_finish:
+            move_choice = random.randint(1, 3)
+            if move_choice == 1:
+                print(op1.fast(next_obs))
+            elif move_choice == 2:
+                print(op1.slow(next_obs))
+            elif move_choice == 3:
+                print(op1.special_move(next_obs))
+        if not op2_finish:  
+            move_choice = random.randint(1, 3)
+            if move_choice == 1:
+                print(op2.fast(next_obs))
+            elif move_choice == 2:
+                print(op2.slow(next_obs))
+            elif move_choice == 3:
+                print(op2.special_move(next_obs))
         
-        move_choice = random.randint(1, 3)
-        if move_choice == 1:
-            print(op2.fast(next_obs))
-        elif move_choice == 2:
-            print(op2.slow(next_obs))
-        elif move_choice == 3:
-            print(op2.special_move(next_obs))
+        #Makes sure no vehicle goes past the end of the track.
+        if p._position >= 99:
+            p._position = 99
+        if op1._position >= 99:
+            op1._position = 99
+            op1_finish = True
+        if op2._position >= 99:
+            op2._position = 99
+            op2_finish = True
 
-        #Updates the display.
+        #Updates the display for all vehicles.
         for loc in range(len(track[v_choice - 1])):
             if track[v_choice - 1][loc] == "P":
                 track[v_choice - 1][loc] = "*"
                 track[v_choice - 1][p._position] = "P"
+        
+        #TODO
+        #Check if the other vehicles have finished and stop them from making choices
+        #Add individual obstavle detection for the other vehicles so they can also crash into them or dodge them in their own lane.
+        #Currently all vehicles are just reacting to the player's next obstacle, but they should be able to react to their own obstacles as well. This will require some changes to the movement methods in the vehicle classes so they can take in a list of obstacles instead of just one, and then determine which one is the next one for that specific vehicle.
 
+
+        #Updates the display for the other vehicles.
+        for loc in range(len(track[0])):
+            if track[0][loc] == "C":
+                track[0][loc] = "*"
+                track[0][c._position] = "C"
+        for loc in range(len(track[1])):
+            if track[1][loc] == "M":
+                track[1][loc] = "*"
+                track[1][m._position] = "M"
+        for loc in range(len(track[2])):
+            if track[2][loc] == "T":
+                track[2][loc] = "*"
+                track[2][t._position] = "T"
 
         #Player finish detection
         if (v_choice == 1 and track [0][99] == "P") or (v_choice == 2 and track [1][99] == "P") or (v_choice == 3 and track [2][99] == "P"):
