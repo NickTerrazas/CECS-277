@@ -22,6 +22,7 @@ class Car(vehicle.Vehicle):
                 self._position = obs_loc
                 return f"{self._name} crashes into an obstacle."
             else:
+                self._position += distance
                 return f"{self._name} uses nitro boost and moves {distance} units."
         else:
             self._position += 1

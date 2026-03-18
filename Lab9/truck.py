@@ -16,12 +16,13 @@ class Truck(vehicle.Vehicle):
         #Determine if the truck has enough energy.
         if self._energy >= 15:
             self._energy -= 15
-            distance = round(self.speed * 2) + random.randint(-1, 1)
+            distance = round(self._speed * 2) + random.randint(-1, 1)
             self._position += distance
             #Determine if the truck rams through an obstacle
             if (self._position + distance) >= obs_loc:
                 return f"{self._name} rams through an obstacle and moves {distance} units."
             else:
+                self._position += distance
                 return f"{self._name} moves {distance} units."
         else:
             self._position += 1
