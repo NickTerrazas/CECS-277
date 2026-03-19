@@ -14,12 +14,21 @@ class Motorcycle(vehicle.Vehicle):
             A string representing how the motorcycle moves.:
         """
         distance = int(self._speed * 0.75) + random.randint(-1, 1)
-        if (self._position + distance) >= obs_loc:
+        if (self._position + distance < obs_loc) and self._position < 99:
             self._position += distance
-            return f"{self._name} slowly dodges the obstacle and moves {distance} units."
+            if self._position >= 99:
+                self._position = 99
+                return f"{self._name} has reached the end of the track."
+            else:
+                return f"{self._name} slowly moves {distance} spaces."
+        elif self._position == 99:
+            return
         else:
             self._position += distance
-            return f"{self._name} slowly moves {distance} units."
+            if self._position >= 99:
+                return f"{self._name} has reached the end of the track."
+            else:
+                return f"{self._name} slowly dodges the obstacle and moves {distance} units."
 
 
     def special_move(self, obs_loc):
@@ -37,16 +46,28 @@ class Motorcycle(vehicle.Vehicle):
             #Determine if the motorcycle will fall over.
             if random.randint(1, 4) == 1:
                 self._position += 1
-                return f"{self._name} fell over while trying to pop a wheelie and only moves 1 unit."
+                if self._position == 99:
+                    return f"{self._name} has reached the end of the track."
+                else:
+                    return f"{self._name} fell over while trying to pop a wheelie and only moves 1 unit."
             else:
                 distance = int(self._speed * 2) + random.randint(-1, 1)
                 #Determine if the motorcycle hits an obstacle
                 if (self._position + distance) >= obs_loc:
                     self._position = obs_loc
-                    return f"{self._name} crashes into an obstacle."
+                    if self._position >= 99:
+                        return f"{self._name} has reached the end of the track."
+                    else:
+                        return f"{self._name} crashes into an obstacle."
                 else:
                     self._position += distance
-                    return f"{self._name} pops a wheelie and moves {distance} units."
+                    if self._position >= 99:
+                        return f"{self._name} has reached the end of the track."
+                    else:
+                        return f"{self._name} pops a wheelie and moves {distance} units."
         else:
             self._position += 1
-            return f"{self._name} did not have enough energy for a wheelie and only moves 1 unit."
+            if self._position >= 99:
+                return f"{self._name} has reached the end of the track."
+            else:
+                return f"{self._name} did not have enough energy for a wheelie and only moves 1 unit."

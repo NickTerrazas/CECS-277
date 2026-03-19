@@ -20,10 +20,19 @@ class Truck(vehicle.Vehicle):
             #Determine if the truck rams through an obstacle
             if (self._position + distance) >= obs_loc:
                 self._position += distance
-                return f"{self._name} rams through an obstacle and moves {distance} units."
+                if self._position >= 99:
+                    return f"{self._name} has reached the end of the track."
+                else:
+                    return f"{self._name} rams through an obstacle and moves {distance} units."
             else:
                 self._position += distance
-                return f"{self._name} moves {distance} units."
+                if self._position >= 99:
+                    return f"{self._name} has reached the end of the track."
+                else:
+                    return f"{self._name} moves {distance} units."
         else:
             self._position += 1
-            return f"{self._name} did not have enough energy for a ram and only moves 1 unit."
+            if self._position >= 99:
+                return f"{self._name} has reached the end of the track."
+            else:
+                return f"{self._name} did not have enough energy for a ram and only moves 1 unit."

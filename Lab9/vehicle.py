@@ -30,14 +30,24 @@ class Vehicle:
         if self._energy >= 5:
             distance = self._speed + random.randint(-1, 1)
             self._energy -= 5
-            if self._position + distance < obs_loc:
+            if (self._position + distance < obs_loc) and self._position < 99:
                 self._position += distance
-                return f"{self._name} moved {distance} spaces."
+                if self._position >= 99:
+                    self._position = 99
+                    return f"{self._name} has reached the end of the track."
+                else:
+                    return f"{self._name} moved {distance} spaces."
+            elif self._position >= 99:
+                return
             else:
                 self._position = obs_loc
                 return f"{self._name} crashed into the obstacle!"
         else:
             self._position += 1
+            if self._position >= 99:
+                return f"{self._name} has reached the end of the track."
+            else:
+                return f"{self._name} tried to go fast but didn't have enough energy and only moves 1 unit!"
 
 
     def slow(self, obs_loc):
@@ -48,13 +58,22 @@ class Vehicle:
             
         """
         distance = int(self._speed * 0.5) + random.randint(-1, 1)
-        if (self._position + distance) >= obs_loc:
+        if (self._position + distance < obs_loc) and self._position < 99:
             self._position += distance
-            return f"{self._name} slowly dodges the obstacle and moves {distance} units."
+            if self._position >= 99:
+                self._position = 99
+                return f"{self._name} has reached the end of the track."
+            else:
+                return f"{self._name} slowly moves {distance} spaces."
+        elif self._position == 99:
+            return
         else:
             self._position += distance
-            return f"{self._name} slowly moves {distance} units."
-        
+            if self._position >= 99:
+                return f"{self._name} has reached the end of the track."
+            else:
+                return f"{self._name} slowly dodges the obstacle and moves {distance} units."
+
 
     def __str__(self):
         """

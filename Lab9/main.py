@@ -48,20 +48,26 @@ def main():
         #Player is the car
         track[0][0] = "P"
         c = p
-        op1 = vehicles[1]
-        op2 = vehicles[2]
+        op1 = m
+        op1_lane = 1
+        op2 = t
+        op2_lane = 2
     elif v_choice == 2:
         #Player is the motorcycle
         track[1][0] = "P"
         m = p
-        op1 = vehicles[0]
-        op2 = vehicles[2]
+        op1 = c
+        op1_lane = 0
+        op2 = t
+        op2_lane = 2
     else:
         #Player is the truck
         track[2][0] = "P"
         t = p
-        op1 = vehicles[0]
-        op2 = vehicles[1]
+        op1 = c
+        op1_lane = 0
+        op2 = m
+        op2_lane = 1
 
     #Game Loop.
     p_finish = False
@@ -69,47 +75,62 @@ def main():
     op2_finish = False
     while not p_finish:
 
-        print("\nLightning Car [Position - " + str(c._position) + ", Energy - " + str(c._energy) + "]")
-        print("Swift Bike [Position - " + str(m._position) + ", Energy - " + str(m._energy) + "]")
-        print("Behemoth Truck [Position - " + str(t._position) + ", Energy - " + str(t._energy) + "]\n")
+        print("\n" + str(c) + "\n" + str(m) + "\n" + str(t) + "\n")
 
         #Displays the track.
         for lane in track:
             print(" ".join(lane))
 
         #Figures out where the next obstacle in the track is, otherwise automatically gets set to the end of the track.
-        next_obs = 100
+        p_next_obs = 100
+        op1_p_next_obs = 100
+        op2_p_next_obs = 100
         loc_test = 99
-        while loc_test > p._position:
-            if track[v_choice - 1][loc_test] == "O":
-                next_obs = loc_test
+        while loc_test > 0:
+            if track[v_choice - 1][loc_test] == "O" and loc_test > p._position:
+                p_next_obs = loc_test
+            if track[op1_lane][loc_test] == "O" and loc_test > op1._position:
+                op1_p_next_obs = loc_test
+            if track[op2_lane][loc_test] == "O" and loc_test > op2._position:
+                op2_p_next_obs = loc_test
             loc_test -= 1
 
         #Player chooses their movement.
         move_choice = get_int_range("Choose action (1. Fast, 2. Slow, 3. Special Move): ", 1, 3)
         if move_choice == 1:
-            print(p.fast(next_obs))
+            print(p.fast(p_next_obs))
         elif move_choice == 2:
-            print(p.slow(next_obs))
+            print(p.slow(p_next_obs))
         elif move_choice == 3:
-            print(p.special_move(next_obs))
+            print(p.special_move(p_next_obs))
 
+        #Opponent finish detection.
         if not op1_finish:
-            move_choice = random.randint(1, 3)
+            if op1._energy >= 15:
+                move_choice = random.randint(1, 3)
+            elif op1._energy >= 5:
+                move_choice = random.randint(1, 2)
+            else:
+                move_choice = 2
             if move_choice == 1:
-                print(op1.fast(next_obs))
+                print(op1.fast(op1_p_next_obs))
             elif move_choice == 2:
-                print(op1.slow(next_obs))
+                print(op1.slow(op1_p_next_obs))
             elif move_choice == 3:
-                print(op1.special_move(next_obs))
+                print(op1.special_move(op1_p_next_obs))
         if not op2_finish:  
-            move_choice = random.randint(1, 3)
+            if op2._energy >= 15:
+                move_choice = random.randint(1, 3)
+            elif op2._energy >= 5:
+                move_choice = random.randint(1, 2)
+            else:
+                move_choice = 2
             if move_choice == 1:
-                print(op2.fast(next_obs))
+                print(op2.fast(op2_p_next_obs))
             elif move_choice == 2:
-                print(op2.slow(next_obs))
+                print(op2.slow(op2_p_next_obs))
             elif move_choice == 3:
-                print(op2.special_move(next_obs))
+                print(op2.special_move(op2_p_next_obs))
         
         #Makes sure no vehicle goes past the end of the track.
         if p._position >= 99:
@@ -121,17 +142,11 @@ def main():
             op2._position = 99
             op2_finish = True
 
-        #Updates the display for all vehicles.
+        #Updates the display for player vehicle.
         for loc in range(len(track[v_choice - 1])):
             if track[v_choice - 1][loc] == "P":
                 track[v_choice - 1][loc] = "*"
                 track[v_choice - 1][p._position] = "P"
-        
-        #TODO
-        #Check if the other vehicles have finished and stop them from making choices
-        #Add individual obstavle detection for the other vehicles so they can also crash into them or dodge them in their own lane.
-        #Currently all vehicles are just reacting to the player's next obstacle, but they should be able to react to their own obstacles as well. This will require some changes to the movement methods in the vehicle classes so they can take in a list of obstacles instead of just one, and then determine which one is the next one for that specific vehicle.
-
 
         #Updates the display for the other vehicles.
         for loc in range(len(track[0])):
@@ -152,8 +167,9 @@ def main():
             p_finish = True
 
 
-
-    #Need another loop to make sure the rest of the vehicles finish the race.
+    #TODO
+    #Need another loop to make sure the rest of the vehicles finish the race, even after the player does
+    #Bug test everything
 
 
 
