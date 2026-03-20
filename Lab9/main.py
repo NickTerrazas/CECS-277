@@ -173,8 +173,13 @@ def main():
                 track[2][loc] = "*"
                 track[2][t._position] = "T"
 
+    #Final Track display.
+    print()
+    for lane in track:
+        print(" ".join(lane))
+
     #Displays the finishing order of the racers.
-    print(f"1st place: {finish_order[0]._name} [Position - {finish_order[0]._position}, Energy - {finish_order[0]._energy}]")
+    print(f"\n1st place: {finish_order[0]._name} [Position - {finish_order[0]._position}, Energy - {finish_order[0]._energy}]")
     print(f"2nd place: {finish_order[1]._name} [Position - {finish_order[1]._position}, Energy - {finish_order[1]._energy}]")
     print(f"3rd place: {finish_order[2]._name} [Position - {finish_order[2]._position}, Energy - {finish_order[2]._energy}]")
 
