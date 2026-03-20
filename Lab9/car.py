@@ -17,14 +17,14 @@ class Car(vehicle.Vehicle):
         if self._energy >= 15:
             self._energy -= 15
             distance = int(self._speed * 1.5) + random.randint(-1, 1)
+            target_position = self._position + distance
 
-            if (self._position + distance < obs_loc) and self._position < 99:
+            if target_position >= 99:
+                self._position = 99
+                return f"{self._name} has reached the end of the track."
+            if (target_position < obs_loc) and self._position < 99:
                 self._position += distance
-                if self._position >= 99:
-                    self._position = 99
-                    return f"{self._name} has reached the end of the track."
-                else:
-                    return f"{self._name} uses nitro boost and moves {distance} units."
+                return f"{self._name} uses nitro boost and moves {distance} units."
             elif self._position == 99:
                 return
             else:

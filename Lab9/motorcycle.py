@@ -52,19 +52,17 @@ class Motorcycle(vehicle.Vehicle):
                     return f"{self._name} fell over while trying to pop a wheelie and only moves 1 unit."
             else:
                 distance = int(self._speed * 2) + random.randint(-1, 1)
+                target_position = self._position + distance
                 #Determine if the motorcycle hits an obstacle
-                if (self._position + distance) >= obs_loc:
+                if target_position >= 99:
+                    self._position = 99
+                    return f"{self._name} has reached the end of the track."
+                if target_position >= obs_loc:
                     self._position = obs_loc
-                    if self._position >= 99:
-                        return f"{self._name} has reached the end of the track."
-                    else:
-                        return f"{self._name} crashes into an obstacle."
+                    return f"{self._name} crashes into an obstacle."
                 else:
                     self._position += distance
-                    if self._position >= 99:
-                        return f"{self._name} has reached the end of the track."
-                    else:
-                        return f"{self._name} pops a wheelie and moves {distance} units."
+                    return f"{self._name} pops a wheelie and moves {distance} units."
         else:
             self._position += 1
             if self._position >= 99:

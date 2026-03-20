@@ -2,10 +2,12 @@
 #Lab 9
 #03/16/2026
 
-# Description: 
-'''
-
-'''
+# Description: This program is a racing game where the player chooses a vehicle and races against two computer-controlled opponents. 
+# The player can choose to move fast, slow, or use a special move, each with different energy costs and effects. The track has obstacles 
+# that the vehicles must avoid, and the first to reach the end of the track wins.
+# The code is organized into classes for each type of vehicle, with a base Vehicle class that defines common behavior and attributes.
+# The main function sets up the game, including the track and the vehicles, and contains the game loop where the player and opponents 
+# take turns moving until they finish the race. The finishing order is then displayed at the end of the game.
 
 import abc
 import random
@@ -40,9 +42,7 @@ def main():
     m = vehicles[1]
     t = vehicles[2]
     
-    #Sets the player and other vehicles
-
-    #need to also assign variables for the other vehicles so they can be displayed in the status updates and track display.
+    #Sets the player and other vehicles based on the player's choice.
     p = vehicles[v_choice - 1]
     if v_choice == 1:
         #Player is the car
@@ -73,7 +73,8 @@ def main():
     p_finish = False
     op1_finish = False
     op2_finish = False
-    while not p_finish:
+    finish_order = [] #List to keep track of the finishing order of the racers.
+    while not p_finish or not op1_finish or not op2_finish:
 
         print("\n" + str(c) + "\n" + str(m) + "\n" + str(t) + "\n")
 
@@ -96,13 +97,14 @@ def main():
             loc_test -= 1
 
         #Player chooses their movement.
-        move_choice = get_int_range("Choose action (1. Fast, 2. Slow, 3. Special Move): ", 1, 3)
-        if move_choice == 1:
-            print(p.fast(p_next_obs))
-        elif move_choice == 2:
-            print(p.slow(p_next_obs))
-        elif move_choice == 3:
-            print(p.special_move(p_next_obs))
+        if not p_finish:
+            move_choice = get_int_range("Choose action (1. Fast, 2. Slow, 3. Special Move): ", 1, 3)
+            if move_choice == 1:
+                print(p.fast(p_next_obs))
+            elif move_choice == 2:
+                print(p.slow(p_next_obs))
+            elif move_choice == 3:
+                print(p.special_move(p_next_obs))
 
         #Opponent finish detection.
         if not op1_finish:
@@ -135,12 +137,21 @@ def main():
         #Makes sure no vehicle goes past the end of the track.
         if p._position >= 99:
             p._position = 99
+            p_finish = True
         if op1._position >= 99:
             op1._position = 99
             op1_finish = True
         if op2._position >= 99:
             op2._position = 99
             op2_finish = True
+
+        #Record the order racers finish.
+        if p_finish and p not in finish_order:
+            finish_order.append(p)
+        if op1_finish and op1 not in finish_order:
+            finish_order.append(op1)
+        if op2_finish and op2 not in finish_order:
+            finish_order.append(op2)
 
         #Updates the display for player vehicle.
         for loc in range(len(track[v_choice - 1])):
@@ -162,14 +173,11 @@ def main():
                 track[2][loc] = "*"
                 track[2][t._position] = "T"
 
-        #Player finish detection
-        if (v_choice == 1 and track [0][99] == "P") or (v_choice == 2 and track [1][99] == "P") or (v_choice == 3 and track [2][99] == "P"):
-            p_finish = True
+    #Displays the finishing order of the racers.
+    print(f"1st place: {finish_order[0]._name} [Position - {finish_order[0]._position}, Energy - {finish_order[0]._energy}]")
+    print(f"2nd place: {finish_order[1]._name} [Position - {finish_order[1]._position}, Energy - {finish_order[1]._energy}]")
+    print(f"3rd place: {finish_order[2]._name} [Position - {finish_order[2]._position}, Energy - {finish_order[2]._energy}]")
 
-
-    #TODO
-    #Need another loop to make sure the rest of the vehicles finish the race, even after the player does
-    #Bug test everything
 
 
 

@@ -30,13 +30,14 @@ class Vehicle:
         if self._energy >= 5:
             distance = self._speed + random.randint(-1, 1)
             self._energy -= 5
-            if (self._position + distance < obs_loc) and self._position < 99:
+            target_position = self._position + distance
+
+            if target_position >= 99:
+                self._position = 99
+                return f"{self._name} has reached the end of the track."
+            if target_position < obs_loc and self._position < 99:
                 self._position += distance
-                if self._position >= 99:
-                    self._position = 99
-                    return f"{self._name} has reached the end of the track."
-                else:
-                    return f"{self._name} moved {distance} spaces."
+                return f"{self._name} moved {distance} spaces."
             elif self._position >= 99:
                 return
             else:
