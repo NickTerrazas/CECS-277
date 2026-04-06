@@ -13,7 +13,8 @@ class Maze:
     #Creates a 2D list from the maze text file
     def __init__(self):
         if not self._intialized:
-            with open("minomaze.txt", "r") as f:
+            self.maze = []
+            with open("Lab10\\minomaze.txt", "r") as f:
                 for line in f:
                     self.maze.append(list(line.strip()))
             self._intialized = True

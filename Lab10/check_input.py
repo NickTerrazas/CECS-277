@@ -117,3 +117,18 @@ def get_yes_no(prompt):
       return False
     else:
       print("Invalid input - should be a 'Yes' or 'No'.")
+
+def get_direction(prompt):
+  """Repeatedly takes in and validates user's input to ensure that it is a valid direction to move the hero in the maze game (WASD).
+  Args:
+    prompt: string to display to the user to prompt them to enter an input.
+  Returns:
+    The valid direction input.
+  """
+  valid = False
+  while not valid:
+    val = input(prompt).upper()
+    if val == "W" or val == "A" or val == "S" or val == "D":
+      return val
+    else:
+      print("Invalid input - should be W, A, S, or D.")
