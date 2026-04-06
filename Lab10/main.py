@@ -19,7 +19,7 @@ def main():
 
     print(mazeObj)
     while True:
-        move = check_input.get_direction("Enter a direction to move (WASD): ")
+        move = get_direction("Enter a direction to move (WASD): ")
         if move == 'W':
             result = hero.go_up()
         elif move == 'A':
