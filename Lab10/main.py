@@ -37,6 +37,11 @@ def main():
             break
         
         minotaurObj.move_minotaur()
+
+        if mazeObj.search_maze('H') is None:
+            print("Oh no! The Minotaur caught you and you lost the game!")
+            break
+        
         print(mazeObj)
 
 

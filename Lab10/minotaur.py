@@ -74,32 +74,32 @@ class Minotaur():
                         mazeob[self._row][self._col] = 'M'
                         valid_move = True
 
-        #cant move towards hero, move randomly.
-        if not valid_move:
-            valid_moves = []
-            if up:
-                valid_moves.append('up')
-            if down:
-                valid_moves.append('down')
-            if left:
-                valid_moves.append('left')
-            if right:
-                valid_moves.append('right')
-            if len(valid_moves) > 0:
-                move = random.choice(valid_moves)
-                if move == 'up':
-                    mazeob[self._row][self._col] = ' '
-                    self._row -= 1
-                    mazeob[self._row][self._col] = 'M'
-                elif move == 'down':
-                    mazeob[self._row][self._col] = ' '
-                    self._row += 1
-                    mazeob[self._row][self._col] = 'M'
-                elif move == 'left':
-                    mazeob[self._row][self._col] = ' '
-                    self._col -= 1
-                    mazeob[self._row][self._col] = 'M'
-                elif move == 'right':
-                    mazeob[self._row][self._col] = ' '
-                    self._col += 1
-                    mazeob[self._row][self._col] = 'M'
+            #cant move towards hero, move randomly.
+            if not valid_move:
+                valid_moves = []
+                if up:
+                    valid_moves.append('up')
+                if down:
+                    valid_moves.append('down')
+                if left:
+                    valid_moves.append('left')
+                if right:
+                    valid_moves.append('right')
+                if len(valid_moves) > 0:
+                    move = random.choice(valid_moves)
+                    if move == 'up':
+                        mazeob[self._row][self._col] = ' '
+                        self._row -= 1
+                        mazeob[self._row][self._col] = 'M'
+                    elif move == 'down':
+                        mazeob[self._row][self._col] = ' '
+                        self._row += 1
+                        mazeob[self._row][self._col] = 'M'
+                    elif move == 'left':
+                        mazeob[self._row][self._col] = ' '
+                        self._col -= 1
+                        mazeob[self._row][self._col] = 'M'
+                    elif move == 'right':
+                        mazeob[self._row][self._col] = ' '
+                        self._col += 1
+                        mazeob[self._row][self._col] = 'M'
