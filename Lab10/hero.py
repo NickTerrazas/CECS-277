@@ -1,10 +1,10 @@
 import maze
 
 class Hero():
-    """A class to represent a hero in a game."""
+    """The hero inside the maze trying to escape from the minotaur."""
 
     def __init__(self):
-        """init"""
+        """Locates the starting location and places the hero there."""
         maze = maze.Maze()
         rownum = 0
         for row in maze:

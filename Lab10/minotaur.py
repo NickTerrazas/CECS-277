@@ -2,10 +2,10 @@ import maze
 import random
 
 class Minotaur():
-    """A class to represent a minotaur in a game."""
+    """A minotaur inside the maze trying to catch the hero."""
 
     def __init__(self):
-        """init"""
+        """Finds a random valid starting location for the minotaur in the maze and places it there."""
         maze = maze.Maze()
         valid_start = False
         while not valid_start:
@@ -18,8 +18,9 @@ class Minotaur():
                 valid_start = True
 
     def move_minotaur(self):
-        """Move the minotaur in a random direction."""
-
+        """Trys to move the minotaur closer to the player if possible, otherwise moves randomly. 
+        The minotaur can only move in the four cardinal directions and cannot move through walls or the finish."""
+        
         #determine possible moves.
         maze = maze.Maze()
         up = True
@@ -35,7 +36,7 @@ class Minotaur():
         if maze[self._row][self._col + 1] == '*' or maze[self._row][self._col + 1] == 'f':
             right = False
 
-        #move towards hero if possible, otherwise move randomly
+        #move towards hero if possible.
         hero_loc = maze.Maze().search_maze('H')
         if hero_loc is not None:
             valid_move = False
@@ -72,7 +73,7 @@ class Minotaur():
                         maze[self._row][self._col] = 'M'
                         valid_move = True
 
-        #cant move towards hero, move randomly
+        #cant move towards hero, move randomly.
         if not valid_move:
             valid_moves = []
             if up:
