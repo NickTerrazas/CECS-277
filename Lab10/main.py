@@ -21,13 +21,13 @@ def main():
     while True:
         move = get_direction("Enter a direction to move (WASD): ")
         if move == 'W':
-            result = hero.go_up()
+            result = heroObj.go_up()
         elif move == 'A':
-            result = hero.go_left()
+            result = heroObj.go_left()
         elif move == 'S':
-            result = hero.go_down()
+            result = heroObj.go_down()
         elif move == 'D':
-            result = hero.go_right()
+            result = heroObj.go_right()
         
         if result == 'f':
             print("Congratulations! You reached the finish and won the game!")
