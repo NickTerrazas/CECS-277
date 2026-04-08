@@ -23,18 +23,18 @@ class Minotaur():
         The minotaur can only move in the four cardinal directions and cannot move through walls or the finish."""
         
         #determine possible moves.
-        maze = maze.Maze()
+        mazeob = maze.Maze()
         up = True
-        if maze[self._row - 1][self._col] == '*' or maze[self._row - 1][self._col] == 'f':
+        if mazeob[self._row - 1][self._col] == '*' or mazeob[self._row - 1][self._col] == 'f':
             up = False
         down = True
-        if maze[self._row + 1][self._col] == '*' or maze[self._row + 1][self._col] == 'f':
+        if mazeob[self._row + 1][self._col] == '*' or mazeob[self._row + 1][self._col] == 'f':
             down = False
         left = True
-        if maze[self._row][self._col - 1] == '*' or maze[self._row][self._col - 1] == 'f':
+        if mazeob[self._row][self._col - 1] == '*' or mazeob[self._row][self._col - 1] == 'f':
             left = False
         right = True
-        if maze[self._row][self._col + 1] == '*' or maze[self._row][self._col + 1] == 'f':
+        if mazeob[self._row][self._col + 1] == '*' or mazeob[self._row][self._col + 1] == 'f':
             right = False
 
         #move towards hero if possible.
@@ -46,32 +46,32 @@ class Minotaur():
                 if self._row > hero_loc[0]:
                     #move up
                     if up and not valid_move:
-                        maze[self._row][self._col] = ' '
+                        mazeob[self._row][self._col] = ' '
                         self._row -= 1
-                        maze[self._row][self._col] = 'M'
+                        mazeob[self._row][self._col] = 'M'
                         valid_move = True
                 else:
                     #move down
                     if down and not valid_move:
-                        maze[self._row][self._col] = ' '
+                        mazeob[self._row][self._col] = ' '
                         self._row += 1
-                        maze[self._row][self._col] = 'M'
+                        mazeob[self._row][self._col] = 'M'
                         valid_move = True
             else:
                 #move horizontally
                 if self._col > hero_loc[1]:
                     #move left
                     if left and not valid_move:
-                        maze[self._row][self._col] = ' '
+                        mazeob[self._row][self._col] = ' '
                         self._col -= 1
-                        maze[self._row][self._col] = 'M'
+                        mazeob[self._row][self._col] = 'M'
                         valid_move = True
                 else:
                     #move right
                     if right and not valid_move:
-                        maze[self._row][self._col] = ' '
+                        mazeob[self._row][self._col] = ' '
                         self._col += 1
-                        maze[self._row][self._col] = 'M'
+                        mazeob[self._row][self._col] = 'M'
                         valid_move = True
 
         #cant move towards hero, move randomly.
@@ -88,18 +88,18 @@ class Minotaur():
             if len(valid_moves) > 0:
                 move = random.choice(valid_moves)
                 if move == 'up':
-                    maze[self._row][self._col] = ' '
+                    mazeob[self._row][self._col] = ' '
                     self._row -= 1
-                    maze[self._row][self._col] = 'M'
+                    mazeob[self._row][self._col] = 'M'
                 elif move == 'down':
-                    maze[self._row][self._col] = ' '
+                    mazeob[self._row][self._col] = ' '
                     self._row += 1
-                    maze[self._row][self._col] = 'M'
+                    mazeob[self._row][self._col] = 'M'
                 elif move == 'left':
-                    maze[self._row][self._col] = ' '
+                    mazeob[self._row][self._col] = ' '
                     self._col -= 1
-                    maze[self._row][self._col] = 'M'
+                    mazeob[self._row][self._col] = 'M'
                 elif move == 'right':
-                    maze[self._row][self._col] = ' '
+                    mazeob[self._row][self._col] = ' '
                     self._col += 1
-                    maze[self._row][self._col] = 'M'
+                    mazeob[self._row][self._col] = 'M'

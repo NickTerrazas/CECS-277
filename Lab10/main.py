@@ -36,7 +36,7 @@ def main():
             print("Oh no! You ran into the Minotaur and lost the game!")
             break
         
-        minotaurObj.move_minotaur(heroObj._row, heroObj._col)
+        minotaurObj.move_minotaur()
         print(mazeObj)
 
 
