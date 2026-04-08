@@ -1,18 +1,19 @@
 import maze
 import random
 
-class Minotaur(maze.Maze):
+class Minotaur():
     """A minotaur inside the maze trying to catch the hero."""
 
     def __init__(self):
         """Finds a random valid starting location for the minotaur in the maze and places it there."""
-        super().__init__()
+        #super().__init__()
+        mazeob = maze.Maze()
         valid_start = False
         while not valid_start:
-            rowstart = random.randint(0, len(maze) - 1)
-            colstart = random.randint(0, len(maze[0]) - 1)
-            if maze[rowstart][colstart] == ' ':
-                maze[rowstart][colstart] = 'M'
+            rowstart = random.randint(0, len(mazeob) - 1)
+            colstart = random.randint(0, len(mazeob[0]) - 1)
+            if mazeob[rowstart][colstart] == ' ':
+                mazeob[rowstart][colstart] = 'M'
                 self._row = rowstart
                 self._col = colstart
                 valid_start = True

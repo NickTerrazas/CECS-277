@@ -1,21 +1,18 @@
 import maze
 
-class Hero(maze.Maze):
+class Hero():
     """The hero inside the maze trying to escape from the minotaur."""
 
     def __init__(self):
         """Locates the starting location and places the hero there."""
-        super().__init__()
-        rownum = 0
-        for row in maze:
-            colnum = 0
-            for col in row:
-                if col == 's':
-                    maze[row][col] = 'H'
-                    self._row = rownum
-                    self._col = colnum
-                colnum += 1
-            rownum += 1
+        #super().__init__()
+        mazeob = maze.Maze()
+
+        start = mazeob.search_maze('s')
+        self._row = start[0]
+        self._col = start[1]
+        mazeob[self._row][self._col] = 'H'
+
 
     def go_up(self):
         """Move the hero up."""

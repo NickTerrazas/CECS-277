@@ -7,17 +7,17 @@ class Maze:
     #Checks if an instance of the class already exists; if not, creates one and returns it
     def __new__(cls):
         if cls._instance is None:
-            cls._instance = super(Maze, cls).__new__(cls)
+            cls._instance = super().__new__(cls)
         return cls._instance
     
     #Creates a 2D list from the maze text file
     def __init__(self):
-        if not self._intialized:
+        if not Maze._intialized:
             self.maze = []
             with open("Lab10\\minomaze.txt", "r") as f:
                 for line in f:
                     self.maze.append(list(line.strip()))
-            self._intialized = True
+            Maze._intialized = True
     
     #Returns the specified row of the maze
     def __getitem__(self, row):
