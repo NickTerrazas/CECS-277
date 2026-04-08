@@ -1,12 +1,12 @@
 import maze
 import random
 
-class Minotaur():
+class Minotaur(maze.Maze):
     """A minotaur inside the maze trying to catch the hero."""
 
     def __init__(self):
         """Finds a random valid starting location for the minotaur in the maze and places it there."""
-        maze = maze.Maze()
+        super().__init__()
         valid_start = False
         while not valid_start:
             rowstart = random.randint(0, len(maze) - 1)

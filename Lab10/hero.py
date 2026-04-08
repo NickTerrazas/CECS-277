@@ -1,11 +1,11 @@
 import maze
 
-class Hero():
+class Hero(maze.Maze):
     """The hero inside the maze trying to escape from the minotaur."""
 
     def __init__(self):
         """Locates the starting location and places the hero there."""
-        maze = maze.Maze()
+        super().__init__()
         rownum = 0
         for row in maze:
             colnum = 0
