@@ -13,7 +13,9 @@ class Hero():
         mazeob[self._row][self._col] = 'H'
 
     def go_up(self):
-        """Move the hero up."""
+        """Move the hero up.
+        Returns the character at the new location (space, finish, or minotaur) or None if the move is invalid.
+        """
         mazeob = maze.Maze()
         if self._row > 0:
             new_loc = mazeob[self._row - 1][self._col]
@@ -24,7 +26,9 @@ class Hero():
             return str(new_loc)
 
     def go_down(self):
-        """Move the hero down."""
+        """Move the hero down.
+        Returns the character at the new location (space, finish, or minotaur) or None if the move is invalid.
+        """
         mazeob = maze.Maze()
         if self._row < len(mazeob) - 1:
             new_loc = mazeob[self._row + 1][self._col]
@@ -35,7 +39,9 @@ class Hero():
             return str(new_loc)
 
     def go_left(self):
-        """Move the hero left."""
+        """Move the hero left.
+        Returns the character at the new location (space, finish, or minotaur) or None if the move is invalid.
+        """
         mazeob = maze.Maze()
         if self._col > 0:
             new_loc = mazeob[self._row][self._col - 1]
@@ -46,7 +52,9 @@ class Hero():
             return str(new_loc)
 
     def go_right(self):
-        """Move the hero right."""
+        """Move the hero right.
+        Returns the character at the new location (space, finish, or minotaur) or None if the move is invalid.
+        """
         mazeob = maze.Maze()
         if self._col < len(mazeob[0]) - 1:
             new_loc = mazeob[self._row][self._col + 1]
