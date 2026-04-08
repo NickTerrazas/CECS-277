@@ -23,6 +23,8 @@ class Hero():
                 mazeob[self._row][self._col] = ' '
                 self._row -= 1
                 mazeob[self._row][self._col] = 'H'
+            if new_loc == '*':
+                print("You ran into a wall!")
             return str(new_loc)
 
     def go_down(self):
@@ -36,6 +38,8 @@ class Hero():
                 mazeob[self._row][self._col] = ' '
                 self._row += 1
                 mazeob[self._row][self._col] = 'H'
+            if new_loc == '*':
+                print("You ran into a wall!")
             return str(new_loc)
 
     def go_left(self):
@@ -49,6 +53,8 @@ class Hero():
                 mazeob[self._row][self._col] = ' '
                 self._col -= 1
                 mazeob[self._row][self._col] = 'H'
+            if new_loc == '*':
+                print("You ran into a wall!")
             return str(new_loc)
 
     def go_right(self):
@@ -62,4 +68,6 @@ class Hero():
                 mazeob[self._row][self._col] = ' '
                 self._col += 1
                 mazeob[self._row][self._col] = 'H'
+            if new_loc == '*':
+                print("You ran into a wall!")
             return str(new_loc)
