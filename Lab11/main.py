@@ -33,8 +33,29 @@ def main():
         
         choice = check_input.get_int_range("Enter Choice: ", 1, len(enemy_list))
 
-        play = False
-        
+        print(f"\n{Player._name}'s HP: {Player._hp}")
+        #choose attack type
+        print("1. Melee Attack\n2. Ranged Attack")
+        attack_choice = check_input.get_int_range("Enter Choice: ", 1, 2)
+        print(attack_choice)
+
+        if attack_choice == 1:
+            print(Player.melee_attack(enemy_list[choice - 1]))
+        if attack_choice == 2:
+            print(Player.ranged_attack(enemy_list[choice - 1]))
+
+        if enemy_list[choice - 1]._hp == 0:
+            print(f"You have slain the {enemy_list[choice - 1]._name}")
+            enemy_list.pop(choice - 1)
+        elif(enemy_list[choice - 1]._hp > 0):
+            print(enemy_list[choice - 1].melee_attack(Player))
+            #test print players new hp after attack
+            print(f"{Player._name}'s HP: {Player._hp}")
+
+
+        if enemy_list == []:
+            print("\nCongratulations! You have defeated all three monsters!\nGame Over\n")
+            play = False
 
 
 if __name__ == "__main__":
