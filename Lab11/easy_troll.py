@@ -4,11 +4,19 @@ import random
 
 
 class EasyTroll(entity.Entity):
-    #randomize hp based on table.
+    """
+        Initializes the easy troll with a name and health points.
+    """
     def __init__(self):
         super().__init__("Tiny Troll", random.randint(6, 9))
 
-    #randomize damage based on table.
+    """
+        Method for the easy troll's melee attack. Deals 5-9 damage to the enemy.
+        Parameters:
+            enemy (Entity): The enemy to attack.
+        Returns:
+            str: A string describing the attack.
+    """
     def melee_attack(self, enemy):
         damage = random.randint(5, 9)
         enemy.take_damage(damage)
