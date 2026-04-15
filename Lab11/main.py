@@ -34,7 +34,6 @@ def main():
         choice = check_input.get_int_range("Enter Choice: ", 1, len(enemy_list))
 
         print(f"\n{Player._name}'s HP: {Player._hp}")
-        #choose attack type
         print("1. Melee Attack\n2. Ranged Attack")
         attack_choice = check_input.get_int_range("Enter Choice: ", 1, 2)
         print(attack_choice)
@@ -55,6 +54,9 @@ def main():
 
         if enemy_list == []:
             print("\nCongratulations! You have defeated all three monsters!\nGame Over\n")
+            play = False
+        elif Player._hp == 0:
+            print("\nYou have been defeated by the monsters...\nGame Over\n")
             play = False
 
 
