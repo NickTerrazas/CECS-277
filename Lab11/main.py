@@ -27,8 +27,13 @@ def main():
     play = True
     while(play):
         #Print the list of enemies.
-        for enemy in enemy_list:
-            print(enemy)
+        print("\nChoose an enemy to attack: ")
+        for i, enemy in enumerate(enemy_list, 1):
+            print(f"{i}. {enemy}")
+        
+        choice = check_input.get_int_range("Enter Choice: ", 1, len(enemy_list))
+
+        play = False
         
 
 
