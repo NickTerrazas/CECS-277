@@ -6,7 +6,7 @@ import random
 class EasyTroll(entity.Entity):
     #randomize hp based on table.
     def __init__(self):
-        super().__init__("Easy Troll", random.randint(6, 9))
+        super().__init__("Tiny Troll", random.randint(6, 9))
 
     #randomize damage based on table.
     def melee_attack(self, enemy):

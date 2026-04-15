@@ -6,7 +6,7 @@ import random
 class EasyGoblin(entity.Entity):
     #randomize hp
     def __init__(self):
-        super().__init__("Easy Goblin", random.randint(5, 7))
+        super().__init__("Baby Goblin", random.randint(5, 7))
 
     #randomize damage
     def melee_attack(self, enemy):
