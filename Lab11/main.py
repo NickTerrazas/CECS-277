@@ -24,9 +24,12 @@ def main():
     for i in range(3):
         enemy_list.append(factory.create_random_enemy())
 
-    #Print the list of enemies.
-    for enemy in enemy_list:
-        print(enemy)
+    play = True
+    while(play):
+        #Print the list of enemies.
+        for enemy in enemy_list:
+            print(enemy)
+        
 
 
 if __name__ == "__main__":
