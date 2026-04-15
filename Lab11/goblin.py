@@ -6,7 +6,7 @@ import random
 class Goblin(entity.Entity):
     #randomize hp
     def __init__(self):
-        super().__init__("Hard Goblin", random.randint(6, 10))
+        super().__init__("Ghoulish Goblin", random.randint(6, 10))
 
     #randomize damage
     def melee_attack(self, enemy):

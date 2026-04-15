@@ -6,7 +6,7 @@ import random
 class Ogre(entity.Entity):
     #randomize hp
     def __init__(self):
-        super().__init__("Hard Ogre", random.randint(8, 12))
+        super().__init__("Muscular Ogre", random.randint(8, 12))
 
     #randomize damage
     def melee_attack(self, enemy):
