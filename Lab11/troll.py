@@ -10,4 +10,6 @@ class Troll(entity.Entity):
 
     #randomize damage
     def melee_attack(self, enemy):
-        enemy.take_damage(random.randint(8, 12))
+        damage = random.randint(8, 12)
+        enemy.take_damage(damage)
+        return(f"{self._name} kicks {enemy._name} for {damage} damage!")

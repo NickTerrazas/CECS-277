@@ -10,4 +10,6 @@ class Goblin(entity.Entity):
 
     #randomize damage
     def melee_attack(self, enemy):
-        enemy.take_damage(random.randint(5, 8))
+        damage = random.randint(5, 8)
+        enemy.take_damage(damage)
+        return(f"{self._name} bites {enemy._name} for {damage} damage!")

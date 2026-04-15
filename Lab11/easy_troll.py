@@ -10,4 +10,6 @@ class EasyTroll(entity.Entity):
 
     #randomize damage based on table.
     def melee_attack(self, enemy):
-        enemy.take_damage(random.randint(5, 9))
+        damage = random.randint(5, 9)
+        enemy.take_damage(damage)
+        return(f"{self._name} kicks {enemy._name} for {damage} damage!")

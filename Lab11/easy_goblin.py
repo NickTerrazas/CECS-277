@@ -10,4 +10,6 @@ class EasyGoblin(entity.Entity):
 
     #randomize damage
     def melee_attack(self, enemy):
-        enemy.take_damage(random.randint(4, 6))
+        damage = random.randint(4, 6)
+        enemy.take_damage(damage)
+        return(f"{self._name} bites {enemy._name} for {damage} damage!")

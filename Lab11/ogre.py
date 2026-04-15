@@ -10,4 +10,6 @@ class Ogre(entity.Entity):
 
     #randomize damage
     def melee_attack(self, enemy):
-        enemy.take_damage(random.randint(6, 10))
+        damage = random.randint(6, 10)
+        enemy.take_damage(damage)
+        return(f"{self._name} smashes {enemy._name} for {damage} damage!")
