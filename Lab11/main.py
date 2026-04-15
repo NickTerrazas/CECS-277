@@ -1,3 +1,12 @@
+#Nicholas Terrazas and Devin Heinemann
+#Lab 11
+#04/13/2026
+
+# Description: Monster Trials is a simple text-based RPG where the player fights against 3 monsters. 
+# The player can choose to play on beginner or expert difficulty, which determines the strength of the monsters they will face. 
+# The player can choose to attack with either a melee or ranged attack, and the monsters will retaliate with their own attacks. 
+# The game continues until the player defeats all 3 monsters or their HP reaches 0.
+
 import check_input
 import beg_factory
 import exp_factory
@@ -24,9 +33,10 @@ def main():
     for i in range(3):
         enemy_list.append(factory.create_random_enemy())
 
+    #Main game loop. Continues until the player defeats all 3 monsters or the player's hp reaches 0.
     play = True
     while(play):
-        #Print the list of enemies.
+        #Prints the list of enemies.
         print("\nChoose an enemy to attack: ")
         for i, enemy in enumerate(enemy_list, 1):
             print(f"{i}. {enemy}")
@@ -36,7 +46,6 @@ def main():
         print(f"\n{Player._name}'s HP: {Player._hp}")
         print("1. Melee Attack\n2. Ranged Attack")
         attack_choice = check_input.get_int_range("Enter Choice: ", 1, 2)
-        print(attack_choice)
 
         if attack_choice == 1:
             print(Player.melee_attack(enemy_list[choice - 1]))
@@ -48,10 +57,8 @@ def main():
             enemy_list.pop(choice - 1)
         elif(enemy_list[choice - 1]._hp > 0):
             print(enemy_list[choice - 1].melee_attack(Player))
-            #test print players new hp after attack
-            print(f"{Player._name}'s HP: {Player._hp}")
 
-
+        #Checks ending conditions to exit the main loop.
         if enemy_list == []:
             print("\nCongratulations! You have defeated all three monsters!\nGame Over\n")
             play = False
