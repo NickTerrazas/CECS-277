@@ -74,15 +74,16 @@ def cliffside_entry(spy):
         return True
     else:
         #Main challenge: player must choose the correct path to climb the cliff. 3 attempts allowed.
-        print("Without enough agility, you must be careful climbing the cliff.\nYou need to find the most stable path to prevent yourself from falling.")
+        print("Without enough climbing ability, the cliffside is dangerous.\nYou search for a stable handhold in the rock face.")
+        print("Guess the correct ledge number from 1 to 5. You get 3 tries.")
         safe_path = random.randint(1, 5)
         for i in range(3):
-            path_choice = check_input.get_int_range("Choose a path (1-5): ", 1, 5)
+            path_choice = check_input.get_int_range(f"Guess ({i + 1}/3): ", 1, 5)
             if path_choice == safe_path:
-                print("You found the safe path and successfully climbed the cliff!")
+                print("You find the right foothold and pull yourself up.")
                 return True
             else:
-                print("That path was unstable! You slip and fall back down. Try again.")
+                print("The rock pulls loose. That wasn't it, try another one.")
         print("You have failed to climb the cliff.")
         return False
 
@@ -117,18 +118,62 @@ def laser_grid_hallway(spy):
         print("You successfully navigated through the laser grid without triggering any alarms!")
         return True
 
-
 def ventilation_shaft(spy):
+    """
+    Spy must climb up a vertical vent shaft. If agility is 6 or higher, they automatically pass. 
+    Otherwise, they have to quickly tap the 'C' key 5 times to climb through the shaft.
+    Parameters:
+        spy (Spy): The spy object attempting the challenge.
+    Returns:
+        bool: True if the challenge is passed, False otherwise.
+    """
     print("\n=== Ventilation Shaft ===")
     print("Inside the facility, a vertical vent shaft is the only path upward. You need enough climbing ability to move through it quickly and quietly.")
-    #TODO
+    
+    if int(spy.agility()) >= 6:
+        print("Your impressive agility allows you to climb through the ventilation shaft with ease, avoiding any noise or obstacles.")
+        return True
+    else:
+        print("You wedge yourself inside and have to pull upward one section at a time.\n To make it through, press Enter 5 times to keep climbing.")
+        for i in range(5):
+            key = input(f"Pull {i + 1}/5: ")
+            while key != '':
+                key = input("Incorrect key. Press 'Enter' to climb: ")
+        print("You successfully climbed through the ventilation shaft!")
+
     return True
 
-
 def security_terminal(spy):
+    """
+    Spy must bypass a security terminal to open the blast door. If tech ability is 6 or higher, they automatically pass.
+    Otherwise, they must guess a random pattern of 3 characters (X and O) to bypass the terminal. They have 3 tries to guess the correct pattern. 
+    Parameters:
+        spy (Spy): The spy object attempting the challenge.
+    Returns:
+        bool: True if the challenge is passed, False otherwise.
+    """
     print("\n=== Security Terminal ===")
     print("A locked security terminal controls the final blast door. You need to bypass its access system before reaching the inner chamber.")
-    #TODO
+
+    if int(spy.tech_ability()) >= 6:
+        print("Your abilities and gadgets easily allow you to hack the security terminal...")
+        return True
+    else:
+        print("Your hacking abilities aren't good enough to bypass the terminal instantly.\nYou must crack the door's 3-symbol security code.")
+        print("The code uses only X and O.\nYou have 3 tries.")
+        pattern = [random.choice(['X', 'O']) for _ in range(3)]
+        for i in range(3):
+            guess = input(f"Attempt {i + 1}/3: ").upper()
+            while len(guess) != 3 or any(c not in ['X', 'O'] for c in guess):
+                guess = input("Invalid input. Enter your guess (3 characters of 'X' and 'O'): ").upper()
+            correct_count = sum(1 for g, p in zip(guess, pattern) if g == p)
+            if correct_count == 3:
+                print("Access granted. The terminal unlocks the door.")
+                return True
+            else:
+                print(f"Access denied. {correct_count} symbol(s) are in the correct position.")
+        print("You failed to bypass the security terminal. Security has been alerted!")
+        return False
     return True
 
 
@@ -167,7 +212,7 @@ def main():
         game_active = security_terminal(spy)
     #Game outcome
     if game_active:
-        print("\nCongratulations! You have successfully infiltrated the villain's lair!")
+        print("\nMission Complete!\nYou have successfully infiltrated the villain's lair!")
     if not game_active:
         print("\nMission Failed. Better luck next time!")
 
