@@ -104,14 +104,16 @@ def laser_grid_hallway(spy):
         print("Your exceptional stealth allows you to navigate through the laser grid undetected, avoiding all beams with ease.")
         return True
     else:
-        #Main challenge: memorize a randomized sequence of 4 directions (Up, Down, Left, or Right)
-        sequence = [random.choice(["Up", "Down", "Left", "Right"]) for _ in range(4)]
-        print("You need to memorize the sequence of safe movements to get through the laser grid.")
-        print("Sequence:", sequence)
-        input("Press Enter when you are ready to input the sequence...")
+        #Main challenge: memorize a randomized sequence of 4 directions (U, D, L, or R)
+        sequence = [random.choice(["U", "D", "L", "R"]) for _ in range(4)]
+        print("You need to memorize the sequence of safe movements [(U)p, (D)own, (L)eft, (R)ight] to get through the laser grid.\n")
+        print("Sequence:")
+        for direction in sequence:
+            print(direction, end=' ')
+        input("\nPress Enter when you are ready to input the sequence...")
         os.system('cls' if os.name == 'nt' else 'clear') 
         for i in range(4):
-            move = input(f"Move {i + 1}: ").capitalize()
+            move = check_input.get_direction(f"Move {i + 1}: ")
             if move != sequence[i]:
                 print("You triggered a laser beam! Security arrived to capture you.")
                 return False
@@ -178,7 +180,7 @@ def security_terminal(spy):
 
 
 def main():
-    print("=== Spy Infiltration: Villain's Lair ===\nChoose a spy, equip 2 gadgets, and infiltrate the lair.")
+    print("\n=== Spy Infiltration: Villain's Lair ===\nChoose a spy, equip 2 gadgets, and infiltrate the lair.")
     #Player chooses a base spy type
     spy = choose_spy()
     print(spy)

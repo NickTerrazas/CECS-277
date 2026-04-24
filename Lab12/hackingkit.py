@@ -7,7 +7,7 @@ import spy_decorator
 class HackingKit(spy_decorator.SpyDecorator):
     def agility(self):
         """Returns spy's agility stat"""
-        return (super().agility() + 0)
+        return (super().agility() - 1)
 
     def stealth(self):
         """Returns spy's stealth stat"""
@@ -15,4 +15,4 @@ class HackingKit(spy_decorator.SpyDecorator):
 
     def tech_ability(self):
         """Returns spy's tech ability stat"""
-        return (super().tech_ability() + 2)
+        return (super().tech_ability() + 3)

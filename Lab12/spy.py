@@ -24,4 +24,4 @@ class Spy(abc.ABC):
 
     def __str__(self):
         """Returns a string representation of the spy, including its description and stats."""
-        return f"{self.description()} (Agility: {self.agility()}, Stealth: {self.stealth()}, Tech Ability: {self.tech_ability()})"
+        return f"\n{self.description()} \nAgility: {self.agility()}\nStealth: {self.stealth()}\nTech Ability: {self.tech_ability()}"

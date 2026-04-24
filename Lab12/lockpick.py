@@ -11,8 +11,8 @@ class Lockpick(spy_decorator.SpyDecorator):
 
     def stealth(self):
         """Returns spy's stealth stat"""
-        return (super().stealth() + 1)
+        return (super().stealth() + 2)
 
     def tech_ability(self):
         """Returns spy's tech ability stat"""
-        return (super().tech_ability() + 1)
+        return (super().tech_ability() + 0)

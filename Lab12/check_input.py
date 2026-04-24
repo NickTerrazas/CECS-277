@@ -128,7 +128,7 @@ def get_direction(prompt):
   valid = False
   while not valid:
     val = input(prompt).upper()
-    if val == "W" or val == "A" or val == "S" or val == "D":
+    if val == "U" or val == "D" or val == "L" or val == "R":
       return val
     else:
-      print("Invalid input - should be W, A, S, or D.")
+      print("Invalid input - should be U, D, L, or R.")
