@@ -50,8 +50,8 @@ def get_date():
         str: The time in HH:MM format.
 """
 def get_time():
-    hour = check_input.get_int("Enter hour: ", 0, 23)
-    minute = check_input.get_int("Enter minute: ", 0, 59)
+    hour = check_input.get_int_range("Enter hour: ", 0, 23)
+    minute = check_input.get_int_range("Enter minute: ", 0, 59)
 
     if hour < 10:
         hour = f"0{hour}"
@@ -72,6 +72,7 @@ def main():
         #Display all tasks
         elif choice == 2:
             if len(tasks) > 0:
+                print(tasks.get_current_task())
                 for task in tasks:
                     print(task)
             else:
@@ -90,8 +91,7 @@ def main():
             desc = input("Enter task description: ")
             date = get_date()
             time = get_time()
-            new_task = tasks.Task(desc, date, time) #FIX IMPORT ONCE TASKLIST IS COMPLETE
-            tasks.append(new_task) #FIX IMPORT ONCE TASKLIST IS COMPLETE
+            tasks.add_task(desc, date, time)
         #Search by date
         elif choice == 5:
             search_date = get_date()
