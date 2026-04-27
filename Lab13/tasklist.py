@@ -10,11 +10,18 @@ class TaskList():
         """
         Initialize the TaskList object by reading tasks from a file and storing them in a list.
         """
-        file = open("Lab13\\tasklist.txt", "r")
+        file = open("tasklist.txt", "r")
+        self.tasks = []
+        for line in file:
+            t = task.Task(line.strip().split(",")[0], line.strip().split(",")[1], line.strip().split(",")[2])
+            self.tasks.append(t)
+        file.close()
+        
+        """file = open("Lab13\\tasklist.txt", "r")
         self.tasks = []
         for line in file:
             self.tasks.append(line.strip())
-        file.close()
+        file.close()"""
 
     def add_task(self, desc, date, time):
         """
