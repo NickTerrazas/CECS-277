@@ -72,7 +72,6 @@ def main():
         #Display all tasks
         elif choice == 2:
             if len(tasks) > 0:
-                print(tasks.get_current_task())
                 for task in tasks:
                     print(task)
             else:
