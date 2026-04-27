@@ -25,8 +25,8 @@ class TaskList():
             date (str): The date of the task in the format "MM-DD-YYYY".
             time (str): The time of the task in the format "HH:MM".
         """
-        string = str(desc) + "," + str(date) + "," + str(time)
-        self.tasks.append(string)
+        new_task = task.Task(desc, date, time)
+        self.tasks.append(new_task)
         self.tasks.sort()
     
     def get_current_task(self):
