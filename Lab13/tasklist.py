@@ -16,12 +16,6 @@ class TaskList():
             t = task.Task(line.strip().split(",")[0], line.strip().split(",")[1], line.strip().split(",")[2])
             self.tasks.append(t)
         file.close()
-        
-        """file = open("Lab13\\tasklist.txt", "r")
-        self.tasks = []
-        for line in file:
-            self.tasks.append(line.strip())
-        file.close()"""
 
     def add_task(self, desc, date, time):
         """
@@ -45,7 +39,7 @@ class TaskList():
         """
         Removes and returns the current task in the task list, indicating that it has been completed.
         """
-        task = self.tasks[self._n]
+        task = self.get_current_task()
         self.tasks.remove(task)
         return task
 
@@ -76,9 +70,9 @@ class TaskList():
         Iterates the interator one task at a time. 
         If at the end of the task list, raises a StopIteration exception. Otherwise, returns the current task.
         """
-        self._n += 1
         if self._n < len(self.tasks):
             result = self.tasks[self._n]
+            self._n += 1
             return result
         else:
             raise StopIteration
