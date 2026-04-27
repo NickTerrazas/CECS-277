@@ -25,7 +25,7 @@ class Task:
             str: A string representation of the Task object.
     """
     def __repr__(self):
-        return f"Task(description='{self.description}', date='{self.date}', time='{self.time}')"
+        return f"{self.description},{self.date},{self.time}"
     
     """
         Method compares two Task objects based on their due date, time, and description.

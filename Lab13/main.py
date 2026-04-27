@@ -99,7 +99,7 @@ def main():
                     print(task)
         #Save and quit
         elif choice == 6:
-            # Save tasks to file (not implemented yet)
+            tasks.save_file()
             print("Saving list...")
             break
 
