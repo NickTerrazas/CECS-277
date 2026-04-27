@@ -36,7 +36,19 @@ class Task:
     """
     def __lt__(self, other):
         if self.date != other.date:
-            return self.date < other.date
+            #Breaks up the date into parts and compares them in order of year, month, day
+            self_date_parts = self.date.split("/")
+            other_date_parts = other.date.split("/")
+            if self_date_parts[2] != other_date_parts[2]: #2 is the year
+                return self_date_parts[2] < other_date_parts[2]
+            if self_date_parts[0] != other_date_parts[0]: #0 is the month
+                return self_date_parts[0] < other_date_parts[0]
+            return self_date_parts[1] < other_date_parts[1] #1 is the day
         if self.time != other.time:
-            return self.time < other.time
+            #Breaks up the time into parts and compares them in order of hour, minute
+            self_time_parts = self.time.split(":")
+            other_time_parts = other.time.split(":")
+            if self_time_parts[0] != other_time_parts[0]: #0 is the hour
+                return self_time_parts[0] < other_time_parts[0]
+            return self_time_parts[1] < other_time_parts[1] #1 is the minute
         return self.description < other.description

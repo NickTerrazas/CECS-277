@@ -7,6 +7,7 @@ import tasklist
 import check_input
 
 tasks = tasklist.TaskList()
+tasks.tasks.sort()
 
 """
     Print the main menu and get the user's choice.
