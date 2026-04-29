@@ -50,7 +50,8 @@ class TaskList():
         file = open("tasklist.txt", "w")
         for task in range(len(self.tasks) - 1):
             file.write(self.tasks[task].__repr__() + "\n")
-        file.write(self.tasks[-1].__repr__())
+        if len(self.tasks) > 0:
+            file.write(self.tasks[-1].__repr__())
         file.close()
 
     def __len__(self):

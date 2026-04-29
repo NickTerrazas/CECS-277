@@ -2,21 +2,23 @@
 #Lab 13
 #04/27/2026
 
-#Description:
+# Description: This program is a task list manager that allows users to add, view, and complete tasks. 
+# The tasks are stored in a file called "tasklist.txt" and are loaded into the program when it starts. 
+# The user can view the current task, view all tasks, mark the current task as complete, add new tasks, 
+# search for tasks by date, and save the task list before quitting the program.
+from asyncio import tasks
+
 import tasklist
 import check_input
-
-tasks = tasklist.TaskList()
-tasks.tasks.sort()
 
 """
     Print the main menu and get the user's choice.
     Returns:
         int: The user's menu choice.
 """
-def main_menu():
+def main_menu(tList):
     print("-Tasklist-")
-    print(f"Tasks to complete: {len(tasks)}")
+    print(f"Tasks to complete: {len(tList)}")
     print("1. Display current task")
     print("2. Display all tasks")
     print("3. Mark current task complete")
@@ -61,8 +63,12 @@ def get_time():
     return f"{hour}:{minute}"
 
 def main():
+    #Load tasks from file and sort them
+    tasks = tasklist.TaskList()
+    tasks.tasks.sort()
+
     while True:
-        choice = main_menu()
+        choice = main_menu(tasks)
         #Display current task
         if choice == 1:
             if len(tasks) > 0:
@@ -94,7 +100,7 @@ def main():
         #Search by date
         elif choice == 5:
             search_date = get_date()
-            for task in tasks: #FIX IMPORT ONCE TASKLIST IS COMPLETE
+            for task in tasks:
                 if task.date == search_date:
                     print(task)
         #Save and quit
