@@ -48,8 +48,9 @@ class TaskList():
         Write the contents of the tasklist back to the file using the Task's __repr__ method.
         """
         file = open("tasklist.txt", "w")
-        for t in self.tasks:
-            file.write(t.__repr__() + "\n")
+        for task in range(len(self.tasks) - 1):
+            file.write(self.tasks[task].__repr__() + "\n")
+        file.write(self.tasks[-1].__repr__())
         file.close()
 
     def __len__(self):
