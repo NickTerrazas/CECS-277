@@ -6,8 +6,6 @@
 # The tasks are stored in a file called "tasklist.txt" and are loaded into the program when it starts. 
 # The user can view the current task, view all tasks, mark the current task as complete, add new tasks, 
 # search for tasks by date, and save the task list before quitting the program.
-from asyncio import tasks
-
 import tasklist
 import check_input
 
