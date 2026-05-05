@@ -4,8 +4,16 @@
 
 # Description:
 
+import puppy
+import state_asleep
+import state_play
+import state_feed
+import check_input
+
 def main():
-  
+    Pup = puppy.Puppy()
+    print("Congratulations on your new puppy!")
+
 
 if __name__ == "__main__":
     main()
