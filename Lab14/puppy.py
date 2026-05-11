@@ -21,11 +21,11 @@ class Puppy():
 
     def throw_ball(self):
         """Throws a ball for the puppy to play with."""
-        self._state.play(self)
+        return self._state.play(self)
 
     def give_food(self):
         """Gives food to the puppy."""
-        self._state.feed(self)
+        return self._state.feed(self)
 
     def inc_feeds(self):
         """Increments the feed count for the puppy."""
