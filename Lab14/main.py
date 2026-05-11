@@ -2,7 +2,9 @@
 #Lab 14
 #05/4/2026
 
-# Description:
+# Description: This program simulates a puppy that can be fed and played with. 
+# The puppy has different states (asleep, playing, eating) that determine how it responds to being fed or played with. 
+# The user can interact with the puppy through a simple menu system.
 
 
 import puppy
