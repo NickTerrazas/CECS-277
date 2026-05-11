@@ -1,8 +1,8 @@
-import state_feed
+import state_eat
 
 class Asleep():
     def feed(self, puppy):
-        puppy.change_state(state_feed.Feed())
+        puppy.change_state(state_eat.Feed())
         puppy.inc_feeds()
         return f"The puppy wakes up and comes running to eat."
 
